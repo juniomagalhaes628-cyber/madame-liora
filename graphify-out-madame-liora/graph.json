@@ -1,0 +1,980 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "script.js",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "script.js",
+      "id": "script"
+    },
+    {
+      "label": "products",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "products",
+      "id": "script_products"
+    },
+    {
+      "label": "cart",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L66",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "cart",
+      "id": "script_cart"
+    },
+    {
+      "label": "wishlist",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L67",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "wishlist",
+      "id": "script_wishlist"
+    },
+    {
+      "label": "filteredProducts",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L70",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "filteredproducts",
+      "id": "script_filteredproducts"
+    },
+    {
+      "label": "setupScrollHeader()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L83",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "setupscrollheader()",
+      "id": "script_setupscrollheader"
+    },
+    {
+      "label": "setupDropdownNav()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L90",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "setupdropdownnav()",
+      "id": "script_setupdropdownnav"
+    },
+    {
+      "label": "setupScrollObserver()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L100",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "setupscrollobserver()",
+      "id": "script_setupscrollobserver"
+    },
+    {
+      "label": "renderCard()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L108",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "rendercard()",
+      "id": "script_rendercard"
+    },
+    {
+      "label": "catLabel()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L135",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "catlabel()",
+      "id": "script_catlabel"
+    },
+    {
+      "label": "renderHomeGrid()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L141",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "renderhomegrid()",
+      "id": "script_renderhomegrid"
+    },
+    {
+      "label": "showHome()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L147",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "showhome()",
+      "id": "script_showhome"
+    },
+    {
+      "label": "filterCat()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L156",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "filtercat()",
+      "id": "script_filtercat"
+    },
+    {
+      "label": "applyFilters()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L172",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "applyfilters()",
+      "id": "script_applyfilters"
+    },
+    {
+      "label": "sortProducts()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L195",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "sortproducts()",
+      "id": "script_sortproducts"
+    },
+    {
+      "label": "sortList()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L197",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "sortlist()",
+      "id": "script_sortlist"
+    },
+    {
+      "label": "toggleSearch()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L205",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "togglesearch()",
+      "id": "script_togglesearch"
+    },
+    {
+      "label": "searchProducts()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L211",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "searchproducts()",
+      "id": "script_searchproducts"
+    },
+    {
+      "label": "openProduct()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L230",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "openproduct()",
+      "id": "script_openproduct"
+    },
+    {
+      "label": "selectSize()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L283",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "selectsize()",
+      "id": "script_selectsize"
+    },
+    {
+      "label": "goBack()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L288",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "goback()",
+      "id": "script_goback"
+    },
+    {
+      "label": "addToCartDetail()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L301",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "addtocartdetail()",
+      "id": "script_addtocartdetail"
+    },
+    {
+      "label": "addToCart()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L308",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "addtocart()",
+      "id": "script_addtocart"
+    },
+    {
+      "label": "addToCartWithSize()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L313",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "addtocartwithsize()",
+      "id": "script_addtocartwithsize"
+    },
+    {
+      "label": "removeFromCart()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L323",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "removefromcart()",
+      "id": "script_removefromcart"
+    },
+    {
+      "label": "changeQty()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L329",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "changeqty()",
+      "id": "script_changeqty"
+    },
+    {
+      "label": "saveCart()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L338",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "savecart()",
+      "id": "script_savecart"
+    },
+    {
+      "label": "updateCartBadge()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L344",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "updatecartbadge()",
+      "id": "script_updatecartbadge"
+    },
+    {
+      "label": "renderCartSidebar()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L349",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "rendercartsidebar()",
+      "id": "script_rendercartsidebar"
+    },
+    {
+      "label": "toggleCart()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L389",
+      "_origin": "ast",
+      "community": 2,
+      "norm_label": "togglecart()",
+      "id": "script_togglecart"
+    },
+    {
+      "label": "toggleWishlist()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L414",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "togglewishlist()",
+      "id": "script_togglewishlist"
+    },
+    {
+      "label": "updateWishlistBadge()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L427",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "updatewishlistbadge()",
+      "id": "script_updatewishlistbadge"
+    },
+    {
+      "label": "toggleMobileMenu()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L434",
+      "_origin": "ast",
+      "community": 0,
+      "norm_label": "togglemobilemenu()",
+      "id": "script_togglemobilemenu"
+    },
+    {
+      "label": "showToast()",
+      "file_type": "code",
+      "source_file": "script.js",
+      "source_location": "L439",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "showtoast()",
+      "id": "script_showtoast"
+    },
+    {
+      "label": "server.js",
+      "file_type": "code",
+      "source_file": "server.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "server.js",
+      "id": "server"
+    },
+    {
+      "label": "http",
+      "file_type": "code",
+      "source_file": "server.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "http",
+      "id": "server_http"
+    },
+    {
+      "label": "fs",
+      "file_type": "code",
+      "source_file": "server.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "fs",
+      "id": "server_fs"
+    },
+    {
+      "label": "path",
+      "file_type": "code",
+      "source_file": "server.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "path",
+      "id": "server_path"
+    },
+    {
+      "label": "mime",
+      "file_type": "code",
+      "source_file": "server.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "mime",
+      "id": "server_mime"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L308",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_addtocart"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L301",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_addtocartdetail"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L313",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_addtocartwithsize"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L172",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_applyfilters"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L66",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_cart"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L135",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_catlabel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L329",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_changeqty"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L156",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_filtercat"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L70",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_filteredproducts"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L288",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_goback"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L230",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_openproduct"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_products"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L323",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_removefromcart"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L108",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_rendercard"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L349",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_rendercartsidebar"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L141",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_renderhomegrid"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L338",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_savecart"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L211",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_searchproducts"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L283",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_selectsize"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_setupdropdownnav"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_setupscrollheader"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L100",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_setupscrollobserver"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L147",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_showhome"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L439",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_showtoast"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L197",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_sortlist"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L195",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_sortproducts"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L389",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_togglecart"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L434",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_togglemobilemenu"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L205",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_togglesearch"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L414",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_togglewishlist"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L344",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_updatecartbadge"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L427",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_updatewishlistbadge"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script",
+      "target": "script_wishlist"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L125",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_rendercard",
+      "target": "script_catlabel"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L249",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_openproduct",
+      "target": "script_catlabel"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L292",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_goback",
+      "target": "script_showhome"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L167",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_filtercat",
+      "target": "script_applyfilters"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L186",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_applyfilters",
+      "target": "script_sortlist"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L195",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_sortproducts",
+      "target": "script_applyfilters"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L304",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_addtocartdetail",
+      "target": "script_addtocartwithsize"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L310",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_addtocart",
+      "target": "script_addtocartwithsize"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L319",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_addtocartwithsize",
+      "target": "script_savecart"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L320",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_addtocartwithsize",
+      "target": "script_showtoast"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L326",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_removefromcart",
+      "target": "script_rendercartsidebar"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L325",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_removefromcart",
+      "target": "script_savecart"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L335",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_changeqty",
+      "target": "script_rendercartsidebar"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L334",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_changeqty",
+      "target": "script_savecart"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L341",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_savecart",
+      "target": "script_rendercartsidebar"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L340",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_savecart",
+      "target": "script_updatecartbadge"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L394",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_togglecart",
+      "target": "script_rendercartsidebar"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L415",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_togglewishlist",
+      "target": "script_showtoast"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "script.js",
+      "source_location": "L408",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "script_togglewishlist",
+      "target": "script_updatewishlistbadge"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "server.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server",
+      "target": "server_fs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "server.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server",
+      "target": "server_http"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "server.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server",
+      "target": "server_mime"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "server.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "server",
+      "target": "server_path"
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "0e83f457e9e38c841607b29482c6caae5bd2b4d1"
+}

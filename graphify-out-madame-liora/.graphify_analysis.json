@@ -1,0 +1,135 @@
+{
+  "communities": {
+    "0": [
+      "script",
+      "script_cart",
+      "script_filteredproducts",
+      "script_products",
+      "script_renderhomegrid",
+      "script_searchproducts",
+      "script_selectsize",
+      "script_setupdropdownnav",
+      "script_setupscrollheader",
+      "script_setupscrollobserver",
+      "script_togglemobilemenu",
+      "script_togglesearch",
+      "script_wishlist"
+    ],
+    "1": [
+      "script_addtocart",
+      "script_addtocartdetail",
+      "script_addtocartwithsize",
+      "script_showtoast",
+      "script_togglewishlist",
+      "script_updatewishlistbadge"
+    ],
+    "2": [
+      "script_changeqty",
+      "script_removefromcart",
+      "script_rendercartsidebar",
+      "script_savecart",
+      "script_togglecart",
+      "script_updatecartbadge"
+    ],
+    "3": [
+      "server",
+      "server_fs",
+      "server_http",
+      "server_mime",
+      "server_path"
+    ],
+    "4": [
+      "script_applyfilters",
+      "script_filtercat",
+      "script_sortlist",
+      "script_sortproducts"
+    ],
+    "5": [
+      "script_catlabel",
+      "script_openproduct",
+      "script_rendercard"
+    ],
+    "6": [
+      "script_goback",
+      "script_showhome"
+    ]
+  },
+  "cohesion": {
+    "0": 0.15384615384615385,
+    "1": 0.3333333333333333,
+    "2": 0.4666666666666667,
+    "3": 0.4,
+    "4": 0.5,
+    "5": 0.6666666666666666,
+    "6": 1.0
+  },
+  "gods": [
+    {
+      "id": "script_savecart",
+      "label": "saveCart()",
+      "degree": 6
+    },
+    {
+      "id": "script_addtocartwithsize",
+      "label": "addToCartWithSize()",
+      "degree": 5
+    },
+    {
+      "id": "script_rendercartsidebar",
+      "label": "renderCartSidebar()",
+      "degree": 5
+    },
+    {
+      "id": "script_applyfilters",
+      "label": "applyFilters()",
+      "degree": 4
+    },
+    {
+      "id": "script_catlabel",
+      "label": "catLabel()",
+      "degree": 3
+    },
+    {
+      "id": "script_removefromcart",
+      "label": "removeFromCart()",
+      "degree": 3
+    },
+    {
+      "id": "script_changeqty",
+      "label": "changeQty()",
+      "degree": 3
+    },
+    {
+      "id": "script_togglewishlist",
+      "label": "toggleWishlist()",
+      "degree": 3
+    },
+    {
+      "id": "script_showtoast",
+      "label": "showToast()",
+      "degree": 3
+    },
+    {
+      "id": "script_rendercard",
+      "label": "renderCard()",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "addToCartWithSize()",
+      "target": "saveCart()",
+      "source_files": [
+        "script.js",
+        "script.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "note": "Bridges community 1 \u2192 community 2"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

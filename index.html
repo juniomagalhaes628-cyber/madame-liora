@@ -11,451 +11,491 @@
 </head>
 <body>
 
-  <!-- ANNOUNCEMENT BAR -->
-  <div class="announce-bar">
-    <p>✨ Envio grátis em Portugal para encomendas acima de <strong>€49,99</strong> &nbsp;|&nbsp; Peças de edição limitada sem reposição de stock</p>
-  </div>
+<!-- ── ANNOUNCE BAR ─────────────────────────────────── -->
+<div class="announce-bar">
+  ✨ Envio grátis em Portugal para encomendas acima de <strong>€49,99</strong> &nbsp;|&nbsp; Peças de edição limitada sem reposição
+</div>
 
-  <!-- HEADER -->
-  <header class="header" id="header">
-    <div class="header__inner">
-      <!-- Left: Nav -->
-      <nav class="nav-main" id="navMain">
-        <a href="#" class="nav-main__link has-dropdown">
-          Vestuário
-          <div class="dropdown">
-            <a href="#" data-cat="novidades">✨ Novidades</a>
-            <a href="#" data-cat="vestidos">Vestidos</a>
-            <a href="#" data-cat="tops">Partes de Cima</a>
-            <a href="#" data-cat="calcas">Calças</a>
-            <a href="#" data-cat="saias">Saias</a>
-            <a href="#" data-cat="casacos">Casacos</a>
-            <a href="#" data-cat="conjuntos">Conjuntos</a>
-            <a href="#" data-cat="macaoes">Macacões</a>
+<!-- ── HEADER ──────────────────────────────────────── -->
+<header class="header" id="header">
+  <div class="header__inner">
+
+    <!-- NAV LEFT -->
+    <nav class="nav-main">
+      <div class="nav-item has-drop">
+        <span>Vestuário <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3l3 4 3-4"/></svg></span>
+        <div class="drop">
+          <div class="drop__col">
+            <p class="drop__heading">Roupas</p>
+            <a href="#" onclick="nav('novidades')">✨ Novidades</a>
+            <a href="#" onclick="nav('vestidos')">Vestidos</a>
+            <a href="#" onclick="nav('conjuntos')">Conjuntos</a>
+            <a href="#" onclick="nav('macaoes')">Macacões</a>
           </div>
-        </a>
-        <a href="#" class="nav-main__link has-dropdown">
-          Acessórios
-          <div class="dropdown">
-            <a href="#" data-cat="malas">Malas</a>
-            <a href="#" data-cat="brincos">Brincos</a>
-            <a href="#" data-cat="colares">Colares</a>
-            <a href="#" data-cat="pulseiras">Pulseiras</a>
-            <a href="#" data-cat="aneis">Anéis</a>
+          <div class="drop__col">
+            <p class="drop__heading">Partes de Cima</p>
+            <a href="#" onclick="nav('tops')">Tops & Blusas</a>
+            <a href="#" onclick="nav('tops')">Coletes</a>
+            <a href="#" onclick="nav('tops')">Corpetes</a>
+            <a href="#" onclick="nav('tops')">T-Shirts</a>
           </div>
-        </a>
-        <a href="#" class="nav-main__link sale-link" data-cat="saldos">Saldos</a>
-      </nav>
-
-      <!-- Center: Logo -->
-      <a href="#" class="logo" onclick="showHome()">
-        <span class="logo__madame">Madame</span>
-        <span class="logo__liora"><em>Liora</em></span>
-      </a>
-
-      <!-- Right: Icons -->
-      <div class="header__actions">
-        <button class="icon-btn" onclick="toggleSearch()" aria-label="Pesquisar">
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3-3"/></svg>
-        </button>
-        <button class="icon-btn" onclick="toggleWishlist()" aria-label="Favoritos">
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
-          <span class="badge" id="wishlistBadge" style="display:none">0</span>
-        </button>
-        <button class="icon-btn cart-btn" onclick="toggleCart()" aria-label="Carrinho">
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
-          <span class="badge" id="cartBadge">0</span>
-        </button>
-        <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
+          <div class="drop__col">
+            <p class="drop__heading">Partes de Baixo</p>
+            <a href="#" onclick="nav('calcas')">Calças</a>
+            <a href="#" onclick="nav('saias')">Saias</a>
+            <a href="#" onclick="nav('casacos')">Casacos</a>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- Search Bar -->
-    <div class="search-bar" id="searchBar">
-      <div class="search-bar__inner">
-        <input type="text" id="searchInput" placeholder="Pesquisar produtos..." oninput="searchProducts(this.value)"/>
-        <button onclick="toggleSearch()">✕</button>
+      <div class="nav-item has-drop">
+        <span>Acessórios <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3l3 4 3-4"/></svg></span>
+        <div class="drop">
+          <div class="drop__col">
+            <a href="#" onclick="nav('malas')">👜 Malas</a>
+            <a href="#" onclick="nav('brincos')">💎 Brincos</a>
+            <a href="#" onclick="nav('colares')">✨ Colares</a>
+            <a href="#" onclick="nav('pulseiras')">📿 Pulseiras</a>
+            <a href="#" onclick="nav('aneis')">💍 Anéis</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </header>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu__close" onclick="toggleMobileMenu()">✕</button>
-    <nav>
-      <details><summary>Vestuário</summary>
-        <a href="#" onclick="filterCat('novidades');toggleMobileMenu()">✨ Novidades</a>
-        <a href="#" onclick="filterCat('vestidos');toggleMobileMenu()">Vestidos</a>
-        <a href="#" onclick="filterCat('tops');toggleMobileMenu()">Partes de Cima</a>
-        <a href="#" onclick="filterCat('calcas');toggleMobileMenu()">Calças</a>
-        <a href="#" onclick="filterCat('saias');toggleMobileMenu()">Saias</a>
-        <a href="#" onclick="filterCat('casacos');toggleMobileMenu()">Casacos</a>
-        <a href="#" onclick="filterCat('conjuntos');toggleMobileMenu()">Conjuntos</a>
-        <a href="#" onclick="filterCat('macaoes');toggleMobileMenu()">Macacões</a>
-      </details>
-      <details><summary>Acessórios</summary>
-        <a href="#" onclick="filterCat('malas');toggleMobileMenu()">Malas</a>
-        <a href="#" onclick="filterCat('brincos');toggleMobileMenu()">Brincos</a>
-        <a href="#" onclick="filterCat('colares');toggleMobileMenu()">Colares</a>
-        <a href="#" onclick="filterCat('pulseiras');toggleMobileMenu()">Pulseiras</a>
-        <a href="#" onclick="filterCat('aneis');toggleMobileMenu()">Anéis</a>
-      </details>
-      <a href="#" onclick="filterCat('saldos');toggleMobileMenu()" class="sale-link">🏷️ Saldos</a>
+      <a class="nav-item sale-link" href="#" onclick="nav('saldos')">Saldos</a>
     </nav>
+
+    <!-- LOGO CENTER -->
+    <a class="logo" href="#" onclick="showHome()">
+      <span class="logo__top">Madame</span>
+      <span class="logo__bot"><em>Liora</em></span>
+    </a>
+
+    <!-- ICONS RIGHT -->
+    <div class="header__icons">
+      <button class="icon-btn" title="Pesquisar" onclick="toggleSearch()">
+        <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3-3"/></svg>
+      </button>
+      <button class="icon-btn" title="Favoritos" onclick="openWishlist()">
+        <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+        <span class="badge" id="wBadge" style="display:none">0</span>
+      </button>
+      <button class="icon-btn" title="Conta" onclick="openAuth()">
+        <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+        <span class="user-name" id="userLabel"></span>
+      </button>
+      <button class="icon-btn" title="Carrinho" onclick="openCart()">
+        <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+        <span class="badge" id="cBadge">0</span>
+      </button>
+      <button class="burger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 
-  <!-- CART SIDEBAR -->
-  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-  <aside class="cart-sidebar" id="cartSidebar">
-    <div class="cart-sidebar__header">
-      <h3>O seu carrinho</h3>
-      <button onclick="toggleCart()">✕</button>
+  <!-- SEARCH BAR -->
+  <div class="search-bar" id="searchBar">
+    <input id="searchInput" type="text" placeholder="Pesquisar produtos..." oninput="doSearch(this.value)"/>
+    <button onclick="toggleSearch()">✕</button>
+  </div>
+</header>
+
+<!-- ── MOBILE MENU ─────────────────────────────────── -->
+<div class="mob-overlay" id="mobOverlay" onclick="toggleMobile()"></div>
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="toggleMobile()">✕</button>
+  <details><summary>Vestuário</summary>
+    <a href="#" onclick="nav('novidades');toggleMobile()">✨ Novidades</a>
+    <a href="#" onclick="nav('vestidos');toggleMobile()">Vestidos</a>
+    <a href="#" onclick="nav('tops');toggleMobile()">Tops & Blusas</a>
+    <a href="#" onclick="nav('calcas');toggleMobile()">Calças</a>
+    <a href="#" onclick="nav('saias');toggleMobile()">Saias</a>
+    <a href="#" onclick="nav('conjuntos');toggleMobile()">Conjuntos</a>
+  </details>
+  <details><summary>Acessórios</summary>
+    <a href="#" onclick="nav('malas');toggleMobile()">Malas</a>
+    <a href="#" onclick="nav('brincos');toggleMobile()">Brincos</a>
+    <a href="#" onclick="nav('colares');toggleMobile()">Colares</a>
+    <a href="#" onclick="nav('pulseiras');toggleMobile()">Pulseiras</a>
+    <a href="#" onclick="nav('aneis');toggleMobile()">Anéis</a>
+  </details>
+  <a class="mob-sale" href="#" onclick="nav('saldos');toggleMobile()">🏷️ Saldos</a>
+  <hr/>
+  <button class="mob-auth" onclick="openAuth();toggleMobile()">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+    <span id="mobUserLabel">Iniciar Sessão</span>
+  </button>
+</div>
+
+<!-- ── CART SIDEBAR ────────────────────────────────── -->
+<div class="overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-side" id="cartSide">
+  <div class="cart-side__hd">
+    <h3>Carrinho <span id="cartQtyLabel"></span></h3>
+    <button onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-side__body" id="cartBody"></div>
+  <div class="cart-side__ft" id="cartFt" style="display:none">
+    <div class="cart-total-row"><span>Subtotal</span><span id="cartSubtotal"></span></div>
+    <div class="cart-total-row cart-ship" id="cartShipRow"></div>
+    <div class="cart-total-row cart-grand"><span>Total</span><span id="cartGrand"></span></div>
+    <button class="btn-checkout" onclick="openCheckout()">Finalizar Encomenda →</button>
+    <div class="pay-row">
+      <span class="pay-tag">MB WAY</span>
+      <span class="pay-tag">PayPal</span>
+      <span class="pay-tag">Cartão</span>
+      <span class="pay-tag">Transferência</span>
     </div>
-    <div class="cart-items" id="cartItems">
-      <div class="cart-empty">
-        <svg width="60" height="60" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
-        <p>O carrinho está vazio</p>
+  </div>
+</aside>
+
+<!-- ── AUTH MODAL ──────────────────────────────────── -->
+<div class="overlay" id="authOverlay" onclick="closeAuth()"></div>
+<div class="modal" id="authModal">
+  <button class="modal-close" onclick="closeAuth()">✕</button>
+  <div class="auth-tabs">
+    <button class="auth-tab active" id="tabLogin" onclick="switchAuth('login')">Iniciar Sessão</button>
+    <button class="auth-tab" id="tabReg" onclick="switchAuth('reg')">Criar Conta</button>
+  </div>
+
+  <!-- LOGIN -->
+  <form id="loginForm" onsubmit="doLogin(event)">
+    <h2 class="modal-title">Bem-vinda de volta</h2>
+    <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="exemplo@email.com" required/></div>
+    <div class="field"><label>Password</label><input type="password" id="loginPass" placeholder="••••••••" required/><button type="button" class="field-toggle" onclick="togglePw('loginPass',this)">👁</button></div>
+    <p class="field-error" id="loginErr"></p>
+    <button type="submit" class="btn-primary-full">Entrar</button>
+    <p class="auth-switch">Não tem conta? <a href="#" onclick="switchAuth('reg')">Registe-se grátis</a></p>
+  </form>
+
+  <!-- REGISTER -->
+  <form id="regForm" style="display:none" onsubmit="doRegister(event)">
+    <h2 class="modal-title">Criar Conta</h2>
+    <div class="field"><label>Nome</label><input type="text" id="regName" placeholder="O seu nome" required/></div>
+    <div class="field"><label>Email</label><input type="email" id="regEmail" placeholder="exemplo@email.com" required/></div>
+    <div class="field"><label>Password</label><input type="password" id="regPass" placeholder="Mínimo 6 caracteres" minlength="6" required/><button type="button" class="field-toggle" onclick="togglePw('regPass',this)">👁</button></div>
+    <p class="field-error" id="regErr"></p>
+    <button type="submit" class="btn-primary-full">Criar Conta</button>
+    <p class="auth-switch">Já tem conta? <a href="#" onclick="switchAuth('login')">Entrar</a></p>
+  </form>
+
+  <!-- LOGGED IN -->
+  <div id="accountPanel" style="display:none">
+    <div class="account-avatar" id="accountAvatar">M</div>
+    <h2 class="modal-title" id="accountName">Olá!</h2>
+    <p class="account-email" id="accountEmail"></p>
+    <div class="account-menu">
+      <button onclick="openOrders()">📦 As minhas encomendas</button>
+      <button onclick="openWishlistPanel()">♥ Favoritos</button>
+      <button onclick="doLogout()" class="btn-logout">Terminar Sessão</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── CHECKOUT MODAL ──────────────────────────────── -->
+<div class="overlay" id="ckOverlay" onclick="closeCheckout()"></div>
+<div class="modal modal--wide" id="ckModal">
+  <button class="modal-close" onclick="closeCheckout()">✕</button>
+  <div class="ck-steps" id="ckSteps">
+    <span class="ck-step active" id="stepDot1">1</span>
+    <span class="ck-line"></span>
+    <span class="ck-step" id="stepDot2">2</span>
+    <span class="ck-line"></span>
+    <span class="ck-step" id="stepDot3">3</span>
+  </div>
+
+  <!-- STEP 1: Dados de Entrega -->
+  <div id="ckStep1">
+    <h2 class="modal-title">Dados de Entrega</h2>
+    <form id="shippingForm" onsubmit="ckNext(event,2)">
+      <div class="field-row">
+        <div class="field"><label>Nome Completo *</label><input type="text" id="ckName" required placeholder="Maria Silva"/></div>
+        <div class="field"><label>Telemóvel *</label><input type="tel" id="ckPhone" required placeholder="9XX XXX XXX"/></div>
+      </div>
+      <div class="field"><label>Email *</label><input type="email" id="ckEmail" required placeholder="email@exemplo.pt"/></div>
+      <div class="field"><label>Morada *</label><input type="text" id="ckAddr" required placeholder="Rua, Número, Andar"/></div>
+      <div class="field-row">
+        <div class="field"><label>Código Postal *</label><input type="text" id="ckZip" required placeholder="0000-000"/></div>
+        <div class="field"><label>Cidade *</label><input type="text" id="ckCity" required placeholder="Lisboa"/></div>
+      </div>
+      <div class="field"><label>País</label>
+        <select id="ckCountry"><option value="PT">Portugal</option><option value="ES">Espanha</option><option value="FR">França</option></select>
+      </div>
+      <div class="field"><label>Notas (opcional)</label><textarea id="ckNotes" placeholder="Instruções de entrega..." rows="2"></textarea></div>
+      <div class="ck-summary" id="ckSummary1"></div>
+      <button type="submit" class="btn-primary-full">Continuar para Pagamento →</button>
+    </form>
+  </div>
+
+  <!-- STEP 2: Pagamento -->
+  <div id="ckStep2" style="display:none">
+    <h2 class="modal-title">Pagamento</h2>
+    <div class="pay-methods">
+      <label class="pay-method" id="pm_mbway">
+        <input type="radio" name="payMethod" value="mbway" onchange="selectPayMethod('mbway')" checked/>
+        <div class="pay-method__inner">
+          <div class="pay-method__logo pay-mbway">MB WAY</div>
+          <span>Pagamento imediato via app</span>
+        </div>
+      </label>
+      <label class="pay-method" id="pm_card">
+        <input type="radio" name="payMethod" value="card" onchange="selectPayMethod('card')"/>
+        <div class="pay-method__inner">
+          <div class="pay-method__logo pay-card">💳</div>
+          <span>Cartão de Crédito / Débito</span>
+        </div>
+      </label>
+      <label class="pay-method" id="pm_paypal">
+        <input type="radio" name="payMethod" value="paypal" onchange="selectPayMethod('paypal')"/>
+        <div class="pay-method__inner">
+          <div class="pay-method__logo pay-pp">PayPal</div>
+          <span>Pagamento via PayPal</span>
+        </div>
+      </label>
+      <label class="pay-method" id="pm_transfer">
+        <input type="radio" name="payMethod" value="transfer" onchange="selectPayMethod('transfer')"/>
+        <div class="pay-method__inner">
+          <div class="pay-method__logo pay-tr">🏦</div>
+          <span>Transferência Bancária</span>
+        </div>
+      </label>
+    </div>
+
+    <!-- MB WAY form -->
+    <div id="pm_mbway_form" class="pay-form">
+      <div class="field"><label>Número de Telemóvel</label><input type="tel" id="mbwayPhone" placeholder="9XX XXX XXX" maxlength="9"/></div>
+      <p class="pay-info">Irá receber uma notificação na sua app MB WAY para confirmar o pagamento.</p>
+    </div>
+
+    <!-- CARD form -->
+    <div id="pm_card_form" class="pay-form" style="display:none">
+      <div class="field"><label>Número do Cartão</label><input type="text" id="cardNum" placeholder="0000 0000 0000 0000" maxlength="19" oninput="fmtCard(this)"/></div>
+      <div class="field-row">
+        <div class="field"><label>Validade</label><input type="text" id="cardExp" placeholder="MM/AA" maxlength="5" oninput="fmtExp(this)"/></div>
+        <div class="field"><label>CVV</label><input type="text" id="cardCvv" placeholder="123" maxlength="3"/></div>
+      </div>
+      <div class="field"><label>Nome no Cartão</label><input type="text" id="cardName" placeholder="NOME APELIDO"/></div>
+    </div>
+
+    <!-- PAYPAL form -->
+    <div id="pm_paypal_form" class="pay-form" style="display:none">
+      <div class="paypal-box">
+        <p class="pay-info">Será redirecionada para o PayPal para completar o pagamento em segurança.</p>
+        <div class="paypal-logo">Pay<span>Pal</span></div>
       </div>
     </div>
-    <div class="cart-sidebar__footer" id="cartFooter" style="display:none">
-      <div class="cart-total">
-        <span>Total</span>
-        <span id="cartTotal">€0,00</span>
+
+    <!-- TRANSFER form -->
+    <div id="pm_transfer_form" class="pay-form" style="display:none">
+      <div class="iban-box">
+        <p>Transferência para:</p>
+        <strong>IBAN: PT50 0000 0000 0000 0000 0000 0</strong><br/>
+        <strong>Titular: Madame Liora Boutique</strong><br/>
+        <p class="pay-info">Envie o comprovativo para madameliora25@gmail.com após a transferência.</p>
       </div>
-      <p class="cart-shipping" id="cartShipping"></p>
-      <button class="btn-checkout">Finalizar Encomenda</button>
-      <p class="cart-payments">
-        <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" width="32"/>
-        <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" width="32"/>
-        <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" width="32"/>
-        <span style="font-size:12px;color:#888">MB WAY · Transferência</span>
-      </p>
     </div>
-  </aside>
 
-  <!-- MAIN CONTENT -->
-  <main id="mainContent">
+    <div class="ck-summary" id="ckSummary2"></div>
+    <div class="ck-btn-row">
+      <button class="btn-back" onclick="ckBack(1)">← Voltar</button>
+      <button class="btn-primary-full" onclick="ckNext(null,3)">Confirmar Pagamento →</button>
+    </div>
+  </div>
 
-    <!-- HOME PAGE -->
-    <div id="homePage">
+  <!-- STEP 3: Confirmação -->
+  <div id="ckStep3" style="display:none">
+    <div class="ck-success">
+      <div class="ck-success__icon">✅</div>
+      <h2>Encomenda Confirmada!</h2>
+      <p id="ckConfirmMsg"></p>
+      <div class="ck-order-num" id="ckOrderNum"></div>
+      <div class="ck-success__details" id="ckSuccessDetails"></div>
+      <button class="btn-primary-full" onclick="closeCheckout();showHome()">Continuar a comprar →</button>
+    </div>
+  </div>
+</div>
 
-      <!-- HERO -->
-      <section class="hero">
-        <div class="hero__slide active" style="background:linear-gradient(135deg,#2a1a14 0%,#5a2d22 50%,#3a1f18 100%)">
-          <div class="hero__content">
-            <p class="hero__eyebrow">Nova Coleção 2025</p>
-            <h1 class="hero__title">Elegância<br/><em>sem limites</em></h1>
-            <p class="hero__sub">Peças exclusivas de edição limitada</p>
-            <div class="hero__actions">
-              <button class="btn btn--primary" onclick="filterCat('novidades')">Ver Novidades</button>
-              <button class="btn btn--ghost" onclick="filterCat('vestidos')">Explorar Vestidos</button>
-            </div>
-          </div>
-          <div class="hero__badge">
-            <span class="stars">★★★★★</span>
-            <span>5,0 · 3 avaliações</span>
-          </div>
+<!-- ── ORDERS MODAL ────────────────────────────────── -->
+<div class="overlay" id="ordersOverlay" onclick="closeOrders()"></div>
+<div class="modal" id="ordersModal">
+  <button class="modal-close" onclick="closeOrders()">✕</button>
+  <h2 class="modal-title">As Minhas Encomendas</h2>
+  <div id="ordersList"></div>
+</div>
+
+<!-- ── MAIN ────────────────────────────────────────── -->
+<main id="main">
+
+  <!-- HOME -->
+  <div id="homePage">
+    <section class="hero">
+      <div class="hero__bg"></div>
+      <div class="hero__content">
+        <p class="hero__eye">Nova Coleção 2025</p>
+        <h1 class="hero__h">Elegância<br/><em>sem limites</em></h1>
+        <p class="hero__sub">Peças exclusivas de edição limitada</p>
+        <div class="hero__btns">
+          <button class="btn btn--rose" onclick="nav('novidades')">Ver Novidades</button>
+          <button class="btn btn--ghost" onclick="nav('vestidos')">Explorar Vestidos</button>
         </div>
-      </section>
-
-      <!-- CATEGORY PILLS -->
-      <section class="cat-pills">
-        <div class="container">
-          <div class="cat-pills__grid">
-            <button class="cat-pill" onclick="filterCat('novidades')">
-              <span class="cat-pill__icon">✨</span>
-              <span>Novidades</span>
-            </button>
-            <button class="cat-pill" onclick="filterCat('vestidos')">
-              <span class="cat-pill__icon">👗</span>
-              <span>Vestidos</span>
-            </button>
-            <button class="cat-pill" onclick="filterCat('tops')">
-              <span class="cat-pill__icon">👚</span>
-              <span>Tops</span>
-            </button>
-            <button class="cat-pill" onclick="filterCat('calcas')">
-              <span class="cat-pill__icon">👖</span>
-              <span>Calças</span>
-            </button>
-            <button class="cat-pill" onclick="filterCat('saias')">
-              <span class="cat-pill__icon">🌸</span>
-              <span>Saias</span>
-            </button>
-            <button class="cat-pill" onclick="filterCat('casacos')">
-              <span class="cat-pill__icon">🧥</span>
-              <span>Casacos</span>
-            </button>
-            <button class="cat-pill" onclick="filterCat('malas')">
-              <span class="cat-pill__icon">👜</span>
-              <span>Malas</span>
-            </button>
-            <button class="cat-pill sale" onclick="filterCat('saldos')">
-              <span class="cat-pill__icon">🏷️</span>
-              <span>Saldos</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- NOVIDADES -->
-      <section class="products-section" id="homeProducts">
-        <div class="container">
-          <div class="section-header">
-            <span class="label">Recém chegados</span>
-            <h2>Novidades <em>da semana</em></h2>
-            <button class="btn-link" onclick="filterCat('novidades')">Ver todos →</button>
-          </div>
-          <div class="products-grid" id="homeGrid"></div>
-        </div>
-      </section>
-
-      <!-- BANNER STRIP -->
-      <section class="banner-strip">
-        <div class="container banner-strip__inner">
-          <div class="banner-item">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
-            <div><strong>Envio Grátis</strong><span>Encomendas acima de €49,99</span></div>
-          </div>
-          <div class="banner-item">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
-            <div><strong>Pagamento Seguro</strong><span>MB WAY · PayPal · Cartão</span></div>
-          </div>
-          <div class="banner-item">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
-            <div><strong>Edição Limitada</strong><span>Peças únicas sem reposição</span></div>
-          </div>
-          <div class="banner-item">
-            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-            <div><strong>Loja Física</strong><span>Oldrões, Penafiel · 936 199 768</span></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- DESTAQUE CATEGORIAS -->
-      <section class="cat-showcase">
-        <div class="container">
-          <div class="section-header center">
-            <span class="label">Explore</span>
-            <h2>As nossas <em>categorias</em></h2>
-          </div>
-          <div class="cat-showcase__grid">
-            <div class="cat-card cat-card--tall" onclick="filterCat('vestidos')" style="background:linear-gradient(160deg,#3d1f1a,#7a3d30)">
-              <div class="cat-card__content">
-                <h3>Vestidos</h3>
-                <p>Para cada ocasião</p>
-                <span class="cat-card__cta">Ver coleção →</span>
-              </div>
-            </div>
-            <div class="cat-card" onclick="filterCat('tops')" style="background:linear-gradient(160deg,#1a2a3d,#3d5a7a)">
-              <div class="cat-card__content">
-                <h3>Tops & Blusas</h3>
-                <p>Estilo do dia a dia</p>
-                <span class="cat-card__cta">Ver coleção →</span>
-              </div>
-            </div>
-            <div class="cat-card" onclick="filterCat('casacos')" style="background:linear-gradient(160deg,#1a3d2a,#3d7a5a)">
-              <div class="cat-card__content">
-                <h3>Casacos</h3>
-                <p>Elegância com conforto</p>
-                <span class="cat-card__cta">Ver coleção →</span>
-              </div>
-            </div>
-            <div class="cat-card" onclick="filterCat('malas')" style="background:linear-gradient(160deg,#3d3a1a,#7a7030)">
-              <div class="cat-card__content">
-                <h3>Acessórios</h3>
-                <p>O toque final perfeito</p>
-                <span class="cat-card__cta">Ver coleção →</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- REVIEWS -->
-      <section class="reviews-section">
-        <div class="container">
-          <div class="section-header center">
-            <span class="label">Avaliações</span>
-            <h2>O que dizem <em>as clientes</em></h2>
-            <div class="reviews-score">
-              <span class="big-score">5,0</span>
-              <span class="stars">★★★★★</span>
-              <span class="reviews-count">Baseado em 3 avaliações Google</span>
-            </div>
-          </div>
-          <div class="reviews-grid">
-            <div class="review-card">
-              <div class="review-card__header">
-                <div class="avatar">A</div>
-                <div><strong>Ana S.</strong><span class="stars stars--sm">★★★★★</span></div>
-              </div>
-              <p>"Loja incrível! As peças são de uma qualidade excelente e o atendimento é muito personalizado."</p>
-            </div>
-            <div class="review-card">
-              <div class="review-card__header">
-                <div class="avatar">M</div>
-                <div><strong>Mariana F.</strong><span class="stars stars--sm">★★★★★</span></div>
-              </div>
-              <p>"A Madame Liora tem peças únicas que não se encontram em lado nenhum. Adoro a curadoria!"</p>
-            </div>
-            <div class="review-card">
-              <div class="review-card__header">
-                <div class="avatar">C</div>
-                <div><strong>Carla R.</strong><span class="stars stars--sm">★★★★★</span></div>
-              </div>
-              <p>"Serviço de entrega muito eficiente! Encomendei e recebi rapidamente. Recomendo a todas!"</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT / INFO -->
-      <section class="info-section">
-        <div class="container info-section__inner">
-          <div class="info-block">
-            <h3>Loja Física</h3>
-            <p>Av. Central de Oldrões 474<br/>4575-262 Oldrões, Penafiel</p>
-            <p><a href="tel:936199768">936 199 768</a></p>
-            <p><a href="mailto:madameliora25@gmail.com">madameliora25@gmail.com</a></p>
-          </div>
-          <div class="info-block">
-            <h3>Horário</h3>
-            <p>Segunda: 14:00 – fecho</p>
-            <p>Consulte horário completo</p>
-            <a href="https://www.instagram.com/madame.liora" target="_blank" class="instagram-link">
-              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              @madame.liora
-            </a>
-          </div>
-          <div class="info-block">
-            <h3>Pagamentos Aceites</h3>
-            <div class="payment-icons">
-              <span class="pay-badge">MB WAY</span>
-              <span class="pay-badge">PayPal</span>
-              <span class="pay-badge">Cartão</span>
-              <span class="pay-badge">Transferência</span>
-              <span class="pay-badge">Depósito</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div><!-- end homePage -->
-
-    <!-- SHOP PAGE -->
-    <div id="shopPage" style="display:none">
-      <div class="shop-header">
-        <div class="container shop-header__inner">
-          <div>
-            <h2 id="shopTitle">Todos os Produtos</h2>
-            <p id="shopCount" class="shop-count"></p>
-          </div>
-          <div class="shop-filters">
-            <select id="sortSelect" onchange="sortProducts(this.value)">
-              <option value="default">Ordenar por</option>
-              <option value="price-asc">Preço: Menor primeiro</option>
-              <option value="price-desc">Preço: Maior primeiro</option>
-              <option value="name">Nome A–Z</option>
-            </select>
-          </div>
-        </div>
+        <div class="hero__stars">★★★★★ <span>5,0 · 3 avaliações Google</span></div>
       </div>
+    </section>
+
+    <!-- CAT PILLS -->
+    <section class="pills-section">
       <div class="container">
-        <div class="shop-layout">
-          <!-- Sidebar filters -->
-          <aside class="shop-sidebar">
-            <div class="filter-group">
-              <h4>Categoria</h4>
-              <label><input type="radio" name="catFilter" value="all" onchange="applyFilters()" checked/> Todos</label>
-              <label><input type="radio" name="catFilter" value="novidades" onchange="applyFilters()"/> Novidades</label>
-              <label><input type="radio" name="catFilter" value="vestidos" onchange="applyFilters()"/> Vestidos</label>
-              <label><input type="radio" name="catFilter" value="tops" onchange="applyFilters()"/> Tops & Blusas</label>
-              <label><input type="radio" name="catFilter" value="calcas" onchange="applyFilters()"/> Calças</label>
-              <label><input type="radio" name="catFilter" value="saias" onchange="applyFilters()"/> Saias</label>
-              <label><input type="radio" name="catFilter" value="casacos" onchange="applyFilters()"/> Casacos</label>
-              <label><input type="radio" name="catFilter" value="conjuntos" onchange="applyFilters()"/> Conjuntos</label>
-              <label><input type="radio" name="catFilter" value="macaoes" onchange="applyFilters()"/> Macacões</label>
-              <label><input type="radio" name="catFilter" value="malas" onchange="applyFilters()"/> Malas</label>
-              <label><input type="radio" name="catFilter" value="brincos" onchange="applyFilters()"/> Brincos</label>
-              <label><input type="radio" name="catFilter" value="colares" onchange="applyFilters()"/> Colares</label>
-              <label><input type="radio" name="catFilter" value="pulseiras" onchange="applyFilters()"/> Pulseiras</label>
-              <label><input type="radio" name="catFilter" value="aneis" onchange="applyFilters()"/> Anéis</label>
-              <label><input type="radio" name="catFilter" value="saldos" onchange="applyFilters()"/> 🏷️ Saldos</label>
-            </div>
-            <div class="filter-group">
-              <h4>Preço</h4>
-              <label><input type="radio" name="priceFilter" value="all" onchange="applyFilters()" checked/> Todos</label>
-              <label><input type="radio" name="priceFilter" value="0-15" onchange="applyFilters()"/> Até €15</label>
-              <label><input type="radio" name="priceFilter" value="15-25" onchange="applyFilters()"/> €15 – €25</label>
-              <label><input type="radio" name="priceFilter" value="25-50" onchange="applyFilters()"/> €25 – €50</label>
-              <label><input type="radio" name="priceFilter" value="50+" onchange="applyFilters()"/> Acima de €50</label>
-            </div>
-          </aside>
-          <!-- Products -->
-          <div class="shop-products">
-            <div class="products-grid" id="shopGrid"></div>
+        <div class="pills-row">
+          <button class="pill" onclick="nav('novidades')"><span>✨</span>Novidades</button>
+          <button class="pill" onclick="nav('vestidos')"><span>👗</span>Vestidos</button>
+          <button class="pill" onclick="nav('tops')"><span>👚</span>Tops</button>
+          <button class="pill" onclick="nav('calcas')"><span>👖</span>Calças</button>
+          <button class="pill" onclick="nav('saias')"><span>🌸</span>Saias</button>
+          <button class="pill" onclick="nav('conjuntos')"><span>💫</span>Conjuntos</button>
+          <button class="pill" onclick="nav('malas')"><span>👜</span>Malas</button>
+          <button class="pill pill--sale" onclick="nav('saldos')"><span>🏷️</span>Saldos</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOVIDADES GRID -->
+    <section class="home-section">
+      <div class="container">
+        <div class="sec-hd">
+          <div><span class="label">Recém chegados</span><h2>Novidades <em>da semana</em></h2></div>
+          <button class="btn-link" onclick="nav('novidades')">Ver todos →</button>
+        </div>
+        <div class="pgrid" id="homeGrid"></div>
+      </div>
+    </section>
+
+    <!-- STRIP -->
+    <div class="strip">
+      <div class="container strip__inner">
+        <div class="strip-item"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg><div><strong>Envio Grátis</strong><span>Acima de €49,99</span></div></div>
+        <div class="strip-item"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg><div><strong>Pagamento Seguro</strong><span>MB WAY · PayPal · Cartão</span></div></div>
+        <div class="strip-item"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg><div><strong>Edição Limitada</strong><span>Sem reposição de stock</span></div></div>
+        <div class="strip-item"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg><div><strong>Loja em Oldrões</strong><span>Penafiel · 936 199 768</span></div></div>
+      </div>
+    </div>
+
+    <!-- CAT CARDS -->
+    <section class="cats-section">
+      <div class="container">
+        <div class="sec-hd center"><span class="label">Explore</span><h2>As nossas <em>categorias</em></h2></div>
+        <div class="cat-grid">
+          <div class="cat-card cat-card--tall" onclick="nav('vestidos')" style="background:linear-gradient(160deg,#3d1f1a,#7a3d30)">
+            <div class="cat-card__c"><h3>Vestidos</h3><p>Para cada ocasião</p><span>Ver coleção →</span></div>
+          </div>
+          <div class="cat-card" onclick="nav('tops')" style="background:linear-gradient(160deg,#1a2a3d,#3d5a7a)">
+            <div class="cat-card__c"><h3>Tops & Blusas</h3><p>Estilo do dia a dia</p><span>Ver coleção →</span></div>
+          </div>
+          <div class="cat-card" onclick="nav('conjuntos')" style="background:linear-gradient(160deg,#1a3d2a,#3d7a5a)">
+            <div class="cat-card__c"><h3>Conjuntos</h3><p>Look completo</p><span>Ver coleção →</span></div>
+          </div>
+          <div class="cat-card" onclick="nav('malas')" style="background:linear-gradient(160deg,#3d3a1a,#7a7030)">
+            <div class="cat-card__c"><h3>Acessórios</h3><p>O toque final perfeito</p><span>Ver coleção →</span></div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- PRODUCT DETAIL PAGE -->
-    <div id="productPage" style="display:none">
-      <div class="container product-detail" id="productDetail"></div>
-    </div>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer__top">
-      <div class="footer__brand">
-        <div class="logo">
-          <span class="logo__madame">Madame</span>
-          <span class="logo__liora"><em>Liora</em></span>
-        </div>
-        <p>Boutique de vestuário feminino em Oldrões.<br/>Peças de edição limitada, elegância sem limites.</p>
-        <div class="footer__social">
-          <a href="https://www.instagram.com/madame.liora" target="_blank" aria-label="Instagram">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
+    <!-- REVIEWS -->
+    <section class="reviews-section">
+      <div class="container">
+        <div class="sec-hd center"><span class="label">Avaliações</span><h2>O que dizem <em>as clientes</em></h2></div>
+        <div class="reviews-score"><span class="big-score">5,0</span><div><span class="stars">★★★★★</span><p>3 avaliações Google</p></div></div>
+        <div class="rev-grid">
+          <div class="rev-card"><div class="rev-hd"><div class="avatar">A</div><div><strong>Ana S.</strong><span class="stars stars--sm">★★★★★</span></div></div><p>"Loja incrível! As peças são de uma qualidade excelente e o atendimento é muito personalizado."</p></div>
+          <div class="rev-card"><div class="rev-hd"><div class="avatar">M</div><div><strong>Mariana F.</strong><span class="stars stars--sm">★★★★★</span></div></div><p>"A Madame Liora tem peças únicas que não se encontram em lado nenhum. Adoro a curadoria!"</p></div>
+          <div class="rev-card"><div class="rev-hd"><div class="avatar">C</div><div><strong>Carla R.</strong><span class="stars stars--sm">★★★★★</span></div></div><p>"Serviço de entrega muito eficiente! Encomendei e recebi rapidamente. Recomendo a todas!"</p></div>
         </div>
       </div>
-      <div class="footer__links">
-        <h4>Loja</h4>
-        <a href="#" onclick="filterCat('novidades')">Novidades</a>
-        <a href="#" onclick="filterCat('vestidos')">Vestidos</a>
-        <a href="#" onclick="filterCat('tops')">Tops</a>
-        <a href="#" onclick="filterCat('calcas')">Calças</a>
-        <a href="#" onclick="filterCat('saias')">Saias</a>
-        <a href="#" onclick="filterCat('saldos')">Saldos</a>
+    </section>
+
+    <!-- INFO -->
+    <section class="info-section">
+      <div class="container info-grid">
+        <div class="info-block"><h3>Loja Física</h3><p>Av. Central de Oldrões 474<br/>4575-262 Oldrões, Penafiel</p><a href="tel:936199768">936 199 768</a><a href="mailto:madameliora25@gmail.com">madameliora25@gmail.com</a></div>
+        <div class="info-block"><h3>Horário</h3><p>Segunda: 14:00 – fecho</p><p>Consulte horário completo</p><a href="https://www.instagram.com/madame.liora" target="_blank" class="ig-link">📷 @madame.liora</a></div>
+        <div class="info-block"><h3>Pagamentos Aceites</h3><div class="pay-tags"><span class="pay-tag">MB WAY</span><span class="pay-tag">PayPal</span><span class="pay-tag">Cartão</span><span class="pay-tag">Transferência</span><span class="pay-tag">Depósito</span></div></div>
       </div>
-      <div class="footer__links">
-        <h4>Acessórios</h4>
-        <a href="#" onclick="filterCat('malas')">Malas</a>
-        <a href="#" onclick="filterCat('brincos')">Brincos</a>
-        <a href="#" onclick="filterCat('colares')">Colares</a>
-        <a href="#" onclick="filterCat('pulseiras')">Pulseiras</a>
-        <a href="#" onclick="filterCat('aneis')">Anéis</a>
-      </div>
-      <div class="footer__links">
-        <h4>Contacto</h4>
-        <a href="tel:936199768">936 199 768</a>
-        <a href="mailto:madameliora25@gmail.com">madameliora25@gmail.com</a>
-        <p style="font-size:13px;color:#888;margin-top:8px">Av. Central de Oldrões 474<br/>4575-262 Oldrões</p>
+    </section>
+  </div>
+
+  <!-- SHOP PAGE -->
+  <div id="shopPage" style="display:none">
+    <div class="shop-hd">
+      <div class="container shop-hd__inner">
+        <div><h2 id="shopTitle">Produtos</h2><p id="shopCount" class="shop-count"></p></div>
+        <select id="sortSel" onchange="applyFilters()">
+          <option value="">Ordenar por</option>
+          <option value="price-asc">Preço: Menor primeiro</option>
+          <option value="price-desc">Preço: Maior primeiro</option>
+          <option value="name">Nome A–Z</option>
+          <option value="new">Novidades primeiro</option>
+        </select>
       </div>
     </div>
-    <div class="footer__bottom">
-      <p>© 2025 Madame Liora Boutique · Todos os direitos reservados</p>
+    <div class="container shop-layout">
+      <aside class="shop-sb">
+        <div class="sb-group">
+          <h4>Categoria</h4>
+          <label><input type="radio" name="cf" value="all" onchange="applyFilters()" checked/> Todos</label>
+          <label><input type="radio" name="cf" value="novidades" onchange="applyFilters()"/> Novidades</label>
+          <label><input type="radio" name="cf" value="vestidos" onchange="applyFilters()"/> Vestidos</label>
+          <label><input type="radio" name="cf" value="tops" onchange="applyFilters()"/> Tops & Blusas</label>
+          <label><input type="radio" name="cf" value="calcas" onchange="applyFilters()"/> Calças</label>
+          <label><input type="radio" name="cf" value="saias" onchange="applyFilters()"/> Saias</label>
+          <label><input type="radio" name="cf" value="casacos" onchange="applyFilters()"/> Casacos</label>
+          <label><input type="radio" name="cf" value="conjuntos" onchange="applyFilters()"/> Conjuntos</label>
+          <label><input type="radio" name="cf" value="macaoes" onchange="applyFilters()"/> Macacões</label>
+          <label><input type="radio" name="cf" value="malas" onchange="applyFilters()"/> Malas</label>
+          <label><input type="radio" name="cf" value="brincos" onchange="applyFilters()"/> Brincos</label>
+          <label><input type="radio" name="cf" value="colares" onchange="applyFilters()"/> Colares</label>
+          <label><input type="radio" name="cf" value="pulseiras" onchange="applyFilters()"/> Pulseiras</label>
+          <label><input type="radio" name="cf" value="aneis" onchange="applyFilters()"/> Anéis</label>
+          <label><input type="radio" name="cf" value="saldos" onchange="applyFilters()"/> 🏷️ Saldos</label>
+        </div>
+        <div class="sb-group">
+          <h4>Preço</h4>
+          <label><input type="radio" name="pf" value="all" onchange="applyFilters()" checked/> Todos</label>
+          <label><input type="radio" name="pf" value="0-15" onchange="applyFilters()"/> Até €15</label>
+          <label><input type="radio" name="pf" value="15-25" onchange="applyFilters()"/> €15 – €25</label>
+          <label><input type="radio" name="pf" value="25-50" onchange="applyFilters()"/> €25 – €50</label>
+          <label><input type="radio" name="pf" value="50+" onchange="applyFilters()"/> + €50</label>
+        </div>
+      </aside>
+      <div><div class="pgrid" id="shopGrid"></div></div>
     </div>
-  </footer>
+  </div>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast"></div>
+  <!-- PRODUCT PAGE -->
+  <div id="productPage" style="display:none">
+    <div class="container" id="productContent"></div>
+  </div>
 
-  <script src="script.js"></script>
+</main>
+
+<!-- ── FOOTER ──────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <div class="logo"><span class="logo__top">Madame</span><span class="logo__bot"><em>Liora</em></span></div>
+      <p>Boutique de vestuário feminino em Oldrões. Peças exclusivas de edição limitada.</p>
+      <a href="https://www.instagram.com/madame.liora" target="_blank" class="footer-ig">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @madame.liora
+      </a>
+    </div>
+    <div><h4>Loja</h4><a href="#" onclick="nav('novidades')">Novidades</a><a href="#" onclick="nav('vestidos')">Vestidos</a><a href="#" onclick="nav('tops')">Tops</a><a href="#" onclick="nav('calcas')">Calças</a><a href="#" onclick="nav('saias')">Saias</a><a href="#" onclick="nav('saldos')">Saldos</a></div>
+    <div><h4>Acessórios</h4><a href="#" onclick="nav('malas')">Malas</a><a href="#" onclick="nav('brincos')">Brincos</a><a href="#" onclick="nav('colares')">Colares</a><a href="#" onclick="nav('pulseiras')">Pulseiras</a><a href="#" onclick="nav('aneis')">Anéis</a></div>
+    <div><h4>Contacto</h4><a href="tel:936199768">936 199 768</a><a href="mailto:madameliora25@gmail.com">madameliora25@gmail.com</a><p>Av. Central de Oldrões 474<br/>4575-262 Oldrões</p></div>
+  </div>
+  <div class="footer__bot"><p>© 2025 Madame Liora Boutique · Todos os direitos reservados</p></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
