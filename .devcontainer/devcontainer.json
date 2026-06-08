@@ -1,0 +1,21 @@
+{
+  "name": "Madame Liora Boutique",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "postStartCommand": "node server.js &",
+  "forwardPorts": [4500],
+  "portsAttributes": {
+    "4500": {
+      "label": "Madame Liora — Loja",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "formulahendry.auto-rename-tag",
+        "ritwickdey.LiveServer"
+      ]
+    }
+  }
+}
