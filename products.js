@@ -76,3 +76,23 @@ const products = [
   { id: 58, name: 'Brincos "Iridescent Heart" em Aço Inoxidável',  cat: ['brincos'],            price: 5.99,  img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/75678701/resize/480/597?1775838499',  sizes: ['Único'],               desc: 'Brincos coração iridescente em aço inoxidável.' },
   { id: 59, name: 'Brincos "Golden Drop" em Aço Inoxidável',       cat: ['brincos'],            price: 6.99,  img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/75766002/resize/480/597?1780525780',  sizes: ['Único'],               desc: 'Brincos pendentes golden drop banhados a ouro.' },
   { id: 60, name: 'Brincos Argola "Ribbed Chunky" em Aço Inox',    cat: ['brincos'],            price: 4.99,  img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/75696143/resize/480/597?1775914894',  sizes: ['Único'],               desc: 'Argolas chunky ribbed em aço inoxidável. Modernas e versáteis.' },
+
+  // ── COLARES ───────────────────────────────────────────────────
+  { id: 61, name: 'Colar "Golden Chain" em Aço Inoxidável',        cat: ['colares'],            price: 7.99,  img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/75678701/resize/480/597?1775838499',  sizes: ['Único'],               desc: 'Colar golden chain em aço inoxidável banhado a ouro.' },
+  { id: 62, name: 'Colar "Pérola Delicada" em Aço Inoxidável',     cat: ['colares'],            price: 8.99,  img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/76266382/resize/480/597?1777729743',  sizes: ['Único'],               desc: 'Colar com pérola delicada em aço inoxidável premium.' },
+  { id: 63, name: 'Colar "Butterfly" em Aço Inoxidável',           cat: ['colares'],            price: 7.99,  img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/76266517/resize/480/597?1777731111',  sizes: ['Único'],               desc: 'Colar butterfly em aço inoxidável. Delicado e feminino.' },
+
+  // ── ANÉIS ─────────────────────────────────────────────────────
+  { id: 64, name: 'Anel "Rose Gold" em Aço Inoxidável',            cat: ['aneis'],              price: 5.99,  img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/75680544/resize/480/597?1780525780',  sizes: ['16','17','18','19'],   desc: 'Anel rose gold em aço inoxidável. Elegante e resistente.' },
+  { id: 65, name: 'Anel "Heart" com Zircónia em Aço Inoxidável',   cat: ['aneis'],              price: 6.99,  img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/75766002/resize/480/597?1780525780',  sizes: ['16','17','18','19'],   desc: 'Anel heart com zircónia brilhante em aço inoxidável.' },
+  { id: 66, name: 'Anel "Solitário" em Aço Inoxidável Dourado',    cat: ['aneis'],              price: 5.99,  img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/75696143/resize/480/597?1775914894',  sizes: ['16','17','18','19'],   desc: 'Anel solitário em aço inoxidável banhado a ouro.' },
+
+  // ── MACACÕES ──────────────────────────────────────────────────
+  { id: 67, name: 'Macacão "Chic Noir" - Decote em V',             cat: ['macaoes'],            price: 29.99, img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/75685335/resize/480/597?1775852863',  sizes: ['XS','S','M','L'],      desc: 'Macacão chic em preto com decote em V sofisticado.' },
+  { id: 68, name: 'Macacão "Summer Bloom" - Floral e Leve',        cat: ['macaoes','novidades'],price: 27.99, img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/77507650/resize/480/715?1780788233',  sizes: ['XS','S','M','L','XL'], desc: 'Macacão floral leve para dias quentes. Nova chegada!', new: true },
+
+  // ── CASACOS ───────────────────────────────────────────────────
+  { id: 69, name: 'Casaco "Trench" - Clássico Bege',               cat: ['casacos'],            price: 49.99, img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/76849485/resize/480/640?1779313871',  sizes: ['XS','S','M','L','XL'], desc: 'Trench coat clássico em bege. Atemporal e elegante.' },
+  { id: 70, name: 'Casaco "Bouclé" - Textura Premium Rosa',         cat: ['casacos','novidades'],price: 54.99, img: 'https://cdnx.jumpseller.com/madame-liora-boutique/image/77047069/resize/480/715?1779873694',  sizes: ['XS','S','M','L'],      desc: 'Casaco bouclé em rosa suave com textura premium. Nova chegada!', new: true },
+
+];

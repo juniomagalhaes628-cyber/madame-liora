@@ -14,7 +14,10 @@ let curPage  = 'home';
 let curCat   = 'all';
 
 // ── INIT ──────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
+// Scripts estão no fim do <body> — o DOM já está pronto quando este
+// código corre. Não podemos depender de DOMContentLoaded (já disparou).
+// Chamamos init() diretamente.
+function init() {
   renderHomeGrid();
   renderBestGrid();
   renderAcGrid();
@@ -23,71 +26,56 @@ document.addEventListener('DOMContentLoaded', () => {
   initDropdowns();
   window.addEventListener('scroll', () =>
     document.getElementById('header').classList.toggle('scrolled', scrollY > 50));
-});
+}
 
-// ── DROPDOWN — JS PURO (hover + clique + fechar fora) ─────────
+// Garantia: se por acaso ainda não carregou, espera; senão chama já
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+// ── DROPDOWN ──────────────────────────────────────────────────
+// Abordagem: CSS hover para desktop, classe .drop-open para clique/touch.
+// SEM onclicks no HTML — tudo via addEventListener aqui.
 function initDropdowns() {
   document.querySelectorAll('.has-drop').forEach(item => {
     const drop = item.querySelector('.drop');
     if (!drop) return;
-    let timer;
+    let closeTimer;
 
-    // Hover (desktop)
+    // ── Desktop: hover ──
     item.addEventListener('mouseenter', () => {
-      clearTimeout(timer);
-      closeAllDrops();
-      drop.style.display = 'flex';
+      clearTimeout(closeTimer);
       item.classList.add('drop-open');
     });
     item.addEventListener('mouseleave', () => {
-      timer = setTimeout(() => {
-        drop.style.display = '';
-        item.classList.remove('drop-open');
-      }, 120);
+      closeTimer = setTimeout(() => item.classList.remove('drop-open'), 150);
     });
 
-    // Clique no trigger (mobile / touch)
-    const trigger = item.querySelector('span');
-    if (trigger) {
-      trigger.addEventListener('click', e => {
-        e.stopPropagation();
-        const isOpen = item.classList.contains('drop-open');
-        closeAllDrops();
-        if (!isOpen) {
-          drop.style.display = 'flex';
-          item.classList.add('drop-open');
-        }
-      });
-    }
+    // ── Touch/clique no trigger (span) ──
+    item.querySelector('span').addEventListener('click', e => {
+      e.stopPropagation();
+      const opening = !item.classList.contains('drop-open');
+      // fecha todos
+      document.querySelectorAll('.has-drop').forEach(x => x.classList.remove('drop-open'));
+      if (opening) item.classList.add('drop-open');
+    });
   });
 
   // Fechar ao clicar fora
-  document.addEventListener('click', e => {
-    if (!e.target.closest('.has-drop')) closeAllDrops();
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.has-drop').forEach(x => x.classList.remove('drop-open'));
   });
 }
 
 function closeAllDrops() {
-  document.querySelectorAll('.has-drop').forEach(el => {
-    el.classList.remove('drop-open');
-    const d = el.querySelector('.drop');
-    if (d) d.style.display = '';
-  });
+  document.querySelectorAll('.has-drop').forEach(x => x.classList.remove('drop-open'));
 }
 
 function navDrop(cat) {
   closeAllDrops();
   nav(cat);
-}
-
-// chamado pelo onclick antigo caso ainda exista
-function toggleDrop(id) {
-  const item = document.getElementById(id);
-  if (!item) return;
-  const drop = item.querySelector('.drop');
-  const isOpen = item.classList.contains('drop-open');
-  closeAllDrops();
-  if (!isOpen && drop) { drop.style.display = 'flex'; item.classList.add('drop-open'); }
 }
 
 // ── CAT LABELS ────────────────────────────────────────────────
