@@ -45,7 +45,8 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 /* Dropdown */
 .drop{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--border);border-top:2px solid var(--rose);box-shadow:0 8px 32px var(--shadow);z-index:999;animation:dropIn .18s ease}
 @keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-.nav-item:hover .drop,.nav-item.drop-open .drop{display:flex}
+/* dropdown controlado por JS — ver initDropdowns() */
+.nav-item.drop-open .drop{display:flex!important}
 .drop__col{min-width:155px;padding:12px 0;border-right:1px solid var(--border)}
 .drop__col:last-child{border-right:none}
 .drop__heading{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);padding:6px 18px 8px}

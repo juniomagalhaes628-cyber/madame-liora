@@ -16,29 +16,78 @@ let curCat   = 'all';
 // ── INIT ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderHomeGrid();
+  renderBestGrid();
+  renderAcGrid();
   refreshBadges();
   refreshUserUI();
+  initDropdowns();
   window.addEventListener('scroll', () =>
     document.getElementById('header').classList.toggle('scrolled', scrollY > 50));
-  // Fechar dropdowns ao clicar fora
+});
+
+// ── DROPDOWN — JS PURO (hover + clique + fechar fora) ─────────
+function initDropdowns() {
+  document.querySelectorAll('.has-drop').forEach(item => {
+    const drop = item.querySelector('.drop');
+    if (!drop) return;
+    let timer;
+
+    // Hover (desktop)
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(timer);
+      closeAllDrops();
+      drop.style.display = 'flex';
+      item.classList.add('drop-open');
+    });
+    item.addEventListener('mouseleave', () => {
+      timer = setTimeout(() => {
+        drop.style.display = '';
+        item.classList.remove('drop-open');
+      }, 120);
+    });
+
+    // Clique no trigger (mobile / touch)
+    const trigger = item.querySelector('span');
+    if (trigger) {
+      trigger.addEventListener('click', e => {
+        e.stopPropagation();
+        const isOpen = item.classList.contains('drop-open');
+        closeAllDrops();
+        if (!isOpen) {
+          drop.style.display = 'flex';
+          item.classList.add('drop-open');
+        }
+      });
+    }
+  });
+
+  // Fechar ao clicar fora
   document.addEventListener('click', e => {
     if (!e.target.closest('.has-drop')) closeAllDrops();
   });
-});
+}
 
-// ── DROPDOWN CLIQUE ───────────────────────────────────────────
-function toggleDrop(id) {
-  const item = document.getElementById(id);
-  const isOpen = item.classList.contains('drop-open');
-  closeAllDrops();
-  if (!isOpen) item.classList.add('drop-open');
-}
 function closeAllDrops() {
-  document.querySelectorAll('.has-drop').forEach(el => el.classList.remove('drop-open'));
+  document.querySelectorAll('.has-drop').forEach(el => {
+    el.classList.remove('drop-open');
+    const d = el.querySelector('.drop');
+    if (d) d.style.display = '';
+  });
 }
+
 function navDrop(cat) {
   closeAllDrops();
   nav(cat);
+}
+
+// chamado pelo onclick antigo caso ainda exista
+function toggleDrop(id) {
+  const item = document.getElementById(id);
+  if (!item) return;
+  const drop = item.querySelector('.drop');
+  const isOpen = item.classList.contains('drop-open');
+  closeAllDrops();
+  if (!isOpen && drop) { drop.style.display = 'flex'; item.classList.add('drop-open'); }
 }
 
 // ── CAT LABELS ────────────────────────────────────────────────
@@ -73,8 +122,27 @@ function card(p) {
 
 // ── HOME ──────────────────────────────────────────────────────
 function renderHomeGrid() {
-  const items = products.filter(p => p.new).slice(0, 8);
+  const items = products.filter(p => p.new).slice(0, 12);
   document.getElementById('homeGrid').innerHTML = items.map(card).join('');
+}
+
+function renderBestGrid() {
+  // Mais vendidos = vestidos e conjuntos com preço mais alto (proxy de popularidade)
+  const items = products
+    .filter(p => p.cat.some(c => ['vestidos','conjuntos'].includes(c)))
+    .sort((a,b) => b.price - a.price)
+    .slice(0, 8);
+  const el = document.getElementById('bestGrid');
+  if (el) el.innerHTML = items.map(card).join('');
+}
+
+function renderAcGrid() {
+  // Acessórios destaque: malas + joalharia
+  const items = products
+    .filter(p => p.cat.some(c => ['malas','brincos','colares','pulseiras','aneis'].includes(c)))
+    .slice(0, 8);
+  const el = document.getElementById('acGrid');
+  if (el) el.innerHTML = items.map(card).join('');
 }
 
 function showHome() {
