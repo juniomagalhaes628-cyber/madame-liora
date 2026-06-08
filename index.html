@@ -22,48 +22,48 @@
 
     <!-- NAV LEFT -->
     <nav class="nav-main">
-      <div class="nav-item has-drop">
-        <span>Vestuário <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3l3 4 3-4"/></svg></span>
+      <div class="nav-item has-drop" id="dropVest">
+        <span onclick="toggleDrop('dropVest')">Vestuário <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3l3 4 3-4"/></svg></span>
         <div class="drop">
           <div class="drop__col">
             <p class="drop__heading">Roupas</p>
-            <a href="#" onclick="nav('novidades')">✨ Novidades</a>
-            <a href="#" onclick="nav('vestidos')">Vestidos</a>
-            <a href="#" onclick="nav('conjuntos')">Conjuntos</a>
-            <a href="#" onclick="nav('macaoes')">Macacões</a>
+            <a href="javascript:void(0)" onclick="navDrop('novidades')">✨ Novidades</a>
+            <a href="javascript:void(0)" onclick="navDrop('vestidos')">Vestidos</a>
+            <a href="javascript:void(0)" onclick="navDrop('conjuntos')">Conjuntos</a>
+            <a href="javascript:void(0)" onclick="navDrop('macaoes')">Macacões</a>
           </div>
           <div class="drop__col">
             <p class="drop__heading">Partes de Cima</p>
-            <a href="#" onclick="nav('tops')">Tops & Blusas</a>
-            <a href="#" onclick="nav('tops')">Coletes</a>
-            <a href="#" onclick="nav('tops')">Corpetes</a>
-            <a href="#" onclick="nav('tops')">T-Shirts</a>
+            <a href="javascript:void(0)" onclick="navDrop('tops')">Tops & Blusas</a>
+            <a href="javascript:void(0)" onclick="navDrop('tops')">Coletes</a>
+            <a href="javascript:void(0)" onclick="navDrop('tops')">Corpetes</a>
+            <a href="javascript:void(0)" onclick="navDrop('tops')">T-Shirts</a>
           </div>
           <div class="drop__col">
             <p class="drop__heading">Partes de Baixo</p>
-            <a href="#" onclick="nav('calcas')">Calças</a>
-            <a href="#" onclick="nav('saias')">Saias</a>
-            <a href="#" onclick="nav('casacos')">Casacos</a>
+            <a href="javascript:void(0)" onclick="navDrop('calcas')">Calças</a>
+            <a href="javascript:void(0)" onclick="navDrop('saias')">Saias</a>
+            <a href="javascript:void(0)" onclick="navDrop('casacos')">Casacos</a>
           </div>
         </div>
       </div>
-      <div class="nav-item has-drop">
-        <span>Acessórios <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3l3 4 3-4"/></svg></span>
+      <div class="nav-item has-drop" id="dropAcess">
+        <span onclick="toggleDrop('dropAcess')">Acessórios <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 3l3 4 3-4"/></svg></span>
         <div class="drop">
           <div class="drop__col">
-            <a href="#" onclick="nav('malas')">👜 Malas</a>
-            <a href="#" onclick="nav('brincos')">💎 Brincos</a>
-            <a href="#" onclick="nav('colares')">✨ Colares</a>
-            <a href="#" onclick="nav('pulseiras')">📿 Pulseiras</a>
-            <a href="#" onclick="nav('aneis')">💍 Anéis</a>
+            <a href="javascript:void(0)" onclick="navDrop('malas')">👜 Malas</a>
+            <a href="javascript:void(0)" onclick="navDrop('brincos')">💎 Brincos</a>
+            <a href="javascript:void(0)" onclick="navDrop('colares')">✨ Colares</a>
+            <a href="javascript:void(0)" onclick="navDrop('pulseiras')">📿 Pulseiras</a>
+            <a href="javascript:void(0)" onclick="navDrop('aneis')">💍 Anéis</a>
           </div>
         </div>
       </div>
-      <a class="nav-item sale-link" href="#" onclick="nav('saldos')">Saldos</a>
+      <a class="nav-item sale-link" href="javascript:void(0)" onclick="nav('saldos')">Saldos</a>
     </nav>
 
     <!-- LOGO CENTER -->
-    <a class="logo" href="#" onclick="showHome()">
+    <a class="logo" href="javascript:void(0)" onclick="showHome()">
       <span class="logo__top">Madame</span>
       <span class="logo__bot"><em>Liora</em></span>
     </a>
@@ -103,21 +103,21 @@
 <div class="mob-menu" id="mobMenu">
   <button class="mob-close" onclick="toggleMobile()">✕</button>
   <details><summary>Vestuário</summary>
-    <a href="#" onclick="nav('novidades');toggleMobile()">✨ Novidades</a>
-    <a href="#" onclick="nav('vestidos');toggleMobile()">Vestidos</a>
-    <a href="#" onclick="nav('tops');toggleMobile()">Tops & Blusas</a>
-    <a href="#" onclick="nav('calcas');toggleMobile()">Calças</a>
-    <a href="#" onclick="nav('saias');toggleMobile()">Saias</a>
-    <a href="#" onclick="nav('conjuntos');toggleMobile()">Conjuntos</a>
+    <a href="javascript:void(0)" onclick="nav('novidades');toggleMobile()">✨ Novidades</a>
+    <a href="javascript:void(0)" onclick="nav('vestidos');toggleMobile()">Vestidos</a>
+    <a href="javascript:void(0)" onclick="nav('tops');toggleMobile()">Tops & Blusas</a>
+    <a href="javascript:void(0)" onclick="nav('calcas');toggleMobile()">Calças</a>
+    <a href="javascript:void(0)" onclick="nav('saias');toggleMobile()">Saias</a>
+    <a href="javascript:void(0)" onclick="nav('conjuntos');toggleMobile()">Conjuntos</a>
   </details>
   <details><summary>Acessórios</summary>
-    <a href="#" onclick="nav('malas');toggleMobile()">Malas</a>
-    <a href="#" onclick="nav('brincos');toggleMobile()">Brincos</a>
-    <a href="#" onclick="nav('colares');toggleMobile()">Colares</a>
-    <a href="#" onclick="nav('pulseiras');toggleMobile()">Pulseiras</a>
-    <a href="#" onclick="nav('aneis');toggleMobile()">Anéis</a>
+    <a href="javascript:void(0)" onclick="nav('malas');toggleMobile()">Malas</a>
+    <a href="javascript:void(0)" onclick="nav('brincos');toggleMobile()">Brincos</a>
+    <a href="javascript:void(0)" onclick="nav('colares');toggleMobile()">Colares</a>
+    <a href="javascript:void(0)" onclick="nav('pulseiras');toggleMobile()">Pulseiras</a>
+    <a href="javascript:void(0)" onclick="nav('aneis');toggleMobile()">Anéis</a>
   </details>
-  <a class="mob-sale" href="#" onclick="nav('saldos');toggleMobile()">🏷️ Saldos</a>
+  <a class="mob-sale" href="javascript:void(0)" onclick="nav('saldos');toggleMobile()">🏷️ Saldos</a>
   <hr/>
   <button class="mob-auth" onclick="openAuth();toggleMobile()">
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
@@ -486,8 +486,8 @@
         @madame.liora
       </a>
     </div>
-    <div><h4>Loja</h4><a href="#" onclick="nav('novidades')">Novidades</a><a href="#" onclick="nav('vestidos')">Vestidos</a><a href="#" onclick="nav('tops')">Tops</a><a href="#" onclick="nav('calcas')">Calças</a><a href="#" onclick="nav('saias')">Saias</a><a href="#" onclick="nav('saldos')">Saldos</a></div>
-    <div><h4>Acessórios</h4><a href="#" onclick="nav('malas')">Malas</a><a href="#" onclick="nav('brincos')">Brincos</a><a href="#" onclick="nav('colares')">Colares</a><a href="#" onclick="nav('pulseiras')">Pulseiras</a><a href="#" onclick="nav('aneis')">Anéis</a></div>
+    <div><h4>Loja</h4><a href="javascript:void(0)" onclick="nav('novidades')">Novidades</a><a href="javascript:void(0)" onclick="nav('vestidos')">Vestidos</a><a href="javascript:void(0)" onclick="nav('tops')">Tops</a><a href="javascript:void(0)" onclick="nav('calcas')">Calças</a><a href="javascript:void(0)" onclick="nav('saias')">Saias</a><a href="javascript:void(0)" onclick="nav('saldos')">Saldos</a></div>
+    <div><h4>Acessórios</h4><a href="javascript:void(0)" onclick="nav('malas')">Malas</a><a href="javascript:void(0)" onclick="nav('brincos')">Brincos</a><a href="javascript:void(0)" onclick="nav('colares')">Colares</a><a href="javascript:void(0)" onclick="nav('pulseiras')">Pulseiras</a><a href="javascript:void(0)" onclick="nav('aneis')">Anéis</a></div>
     <div><h4>Contacto</h4><a href="tel:936199768">936 199 768</a><a href="mailto:madameliora25@gmail.com">madameliora25@gmail.com</a><p>Av. Central de Oldrões 474<br/>4575-262 Oldrões</p></div>
   </div>
   <div class="footer__bot"><p>© 2025 Madame Liora Boutique · Todos os direitos reservados</p></div>

@@ -20,7 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
   refreshUserUI();
   window.addEventListener('scroll', () =>
     document.getElementById('header').classList.toggle('scrolled', scrollY > 50));
+  // Fechar dropdowns ao clicar fora
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.has-drop')) closeAllDrops();
+  });
 });
+
+// ── DROPDOWN CLIQUE ───────────────────────────────────────────
+function toggleDrop(id) {
+  const item = document.getElementById(id);
+  const isOpen = item.classList.contains('drop-open');
+  closeAllDrops();
+  if (!isOpen) item.classList.add('drop-open');
+}
+function closeAllDrops() {
+  document.querySelectorAll('.has-drop').forEach(el => el.classList.remove('drop-open'));
+}
+function navDrop(cat) {
+  closeAllDrops();
+  nav(cat);
+}
 
 // ── CAT LABELS ────────────────────────────────────────────────
 const CAT_LABELS = { novidades:'Novidades', vestidos:'Vestidos', tops:'Tops & Blusas',
