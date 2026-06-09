@@ -7,6 +7,10 @@
   --ser:'Cormorant Garamond',Georgia,serif;
   --san:'Montserrat',sans-serif;
   --tr:.22s ease;
+  /* Emil: custom easing curves */
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-in-out:cubic-bezier(0.77,0,0.175,1);
+  --ease-drawer:cubic-bezier(0.32,0.72,0,1);
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--san);background:#fff;color:var(--dark);font-size:14px;line-height:1.6;overflow-x:hidden}
@@ -43,8 +47,9 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .nav-item:hover>span svg,.nav-item.drop-open>span svg{transform:rotate(180deg)}
 
 /* Dropdown */
-.drop{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--border);border-top:2px solid var(--rose);box-shadow:0 8px 32px var(--shadow);z-index:999;animation:dropIn .18s ease}
-@keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.drop{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid var(--border);border-top:2px solid var(--rose);box-shadow:0 8px 32px var(--shadow);z-index:999;animation:dropIn 180ms var(--ease-out) both}
+/* Emil: never scale(0) — start from scale(0.97) + opacity */
+@keyframes dropIn{from{opacity:0;transform:translateY(-4px) scale(0.98)}to{opacity:1;transform:none}}
 /* dropdown: hover CSS (desktop rápido) + classe JS (clique/touch) */
 .nav-item:hover .drop{display:flex}
 .nav-item.drop-open .drop{display:flex!important}
@@ -56,8 +61,10 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 
 /* Icons right */
 .header__icons{display:flex;align-items:center;gap:4px}
-.icon-btn{display:flex;align-items:center;gap:5px;padding:8px 10px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dark);transition:color var(--tr);position:relative}
-.icon-btn:hover{color:var(--rose)}
+/* Emil: icon buttons — immediate feedback */
+.icon-btn{display:flex;align-items:center;gap:5px;padding:8px 10px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dark);transition:color 160ms var(--ease-out),transform 160ms var(--ease-out);position:relative}
+.icon-btn:active{transform:scale(0.90)}
+@media(hover:hover)and(pointer:fine){.icon-btn:hover{color:var(--rose)}}
 .user-name{font-size:.68rem;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .badge{position:absolute;top:2px;right:2px;background:var(--rose);color:#fff;border-radius:50%;width:16px;height:16px;font-size:.6rem;display:flex;align-items:center;justify-content:center;font-weight:700}
 .burger{display:none;flex-direction:column;gap:5px;width:26px;padding:4px 0;margin-left:8px}
@@ -73,7 +80,7 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 /* ── MOBILE MENU ───────────────────────────────────────── */
 .mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000}
 .mob-overlay.open{display:block}
-.mob-menu{position:fixed;top:0;left:-290px;width:270px;height:100%;background:#fff;z-index:1001;overflow-y:auto;transition:left .28s ease;padding:0 0 30px}
+.mob-menu{position:fixed;top:0;left:-290px;width:270px;height:100%;background:#fff;z-index:1001;overflow-y:auto;transition:left 300ms var(--ease-drawer);padding:0 0 30px}
 .mob-menu.open{left:0}
 .mob-close{display:block;width:100%;text-align:right;padding:16px 18px;font-size:1.3rem;color:var(--mid)}
 .mob-menu details{border-bottom:1px solid var(--border)}
@@ -91,7 +98,8 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .overlay.open{display:block}
 
 /* ── CART SIDEBAR ──────────────────────────────────────── */
-.cart-side{position:fixed;top:0;right:-420px;bottom:0;width:400px;background:#fff;z-index:1101;display:flex;flex-direction:column;transition:right .3s ease;box-shadow:-4px 0 24px var(--shadow)}
+/* Emil: drawer uses iOS-like cubic-bezier */
+.cart-side{position:fixed;top:0;right:-420px;bottom:0;width:400px;background:#fff;z-index:1101;display:flex;flex-direction:column;transition:right 320ms var(--ease-drawer);box-shadow:-4px 0 24px var(--shadow)}
 .cart-side.open{right:0}
 .cart-side__hd{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--border)}
 .cart-side__hd h3{font-family:var(--ser);font-size:1.3rem;font-weight:400}
@@ -101,8 +109,9 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .cart-total-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;font-size:.82rem;color:var(--mid)}
 .cart-grand{font-size:1rem;font-weight:700;color:var(--dark);border-top:1px solid var(--border);padding-top:10px;margin-top:6px}
 .cart-ship{font-size:.78rem}
-.btn-checkout{display:block;width:100%;background:var(--dark);color:#fff;padding:14px;text-align:center;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;border-radius:3px;margin-top:14px;transition:background var(--tr)}
-.btn-checkout:hover{background:var(--rose-d)}
+.btn-checkout{display:block;width:100%;background:var(--dark);color:#fff;padding:14px;text-align:center;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;border-radius:3px;margin-top:14px;transition:background 160ms var(--ease-out),transform 160ms var(--ease-out)}
+.btn-checkout:active{transform:scale(0.98)}
+@media(hover:hover)and(pointer:fine){.btn-checkout:hover{background:var(--rose-d)}}
 .pay-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;justify-content:center}
 .pay-tag{background:var(--light);padding:3px 9px;border-radius:3px;font-size:.64rem;letter-spacing:.06em;color:var(--mid)}
 
@@ -127,9 +136,10 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 
 /* ── MODALS ────────────────────────────────────────────── */
 .modal{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:420px;max-width:96vw;max-height:90vh;overflow-y:auto;background:#fff;border-radius:6px;z-index:1200;box-shadow:0 12px 48px var(--shadow)}
-.modal.open{display:block;animation:fadeUp .22s ease}
+.modal.open{display:block;animation:fadeUp 220ms var(--ease-out) both}
 .modal--wide{width:640px}
-@keyframes fadeUp{from{opacity:0;transform:translate(-50%,-46%)}to{opacity:1;transform:translate(-50%,-50%)}}
+/* Emil: scale(0.97) + opacity, not translateY that looks like it comes from nowhere */
+@keyframes fadeUp{from{opacity:0;transform:translate(-50%,-50%) scale(0.97)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
 .modal-close{position:absolute;top:14px;right:16px;font-size:1.25rem;color:var(--mid);z-index:1}
 .modal-title{font-family:var(--ser);font-size:1.5rem;font-weight:400;padding:24px 24px 6px;color:var(--dark)}
 
@@ -145,8 +155,10 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .field-toggle{position:absolute;right:10px;bottom:10px;font-size:.88rem}
 .field-error{color:#c0392b;font-size:.75rem;margin-top:8px;min-height:18px}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.btn-primary-full{display:block;width:100%;background:var(--dark);color:#fff;padding:12px;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;border-radius:3px;margin-top:8px;transition:background var(--tr)}
-.btn-primary-full:hover{background:var(--rose-d)}
+/* Emil: primary button — instant feel with :active */
+.btn-primary-full{display:block;width:100%;background:var(--dark);color:#fff;padding:12px;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;border-radius:3px;margin-top:8px;transition:background 160ms var(--ease-out),transform 160ms var(--ease-out)}
+.btn-primary-full:active{transform:scale(0.98)}
+@media(hover:hover)and(pointer:fine){.btn-primary-full:hover{background:var(--rose-d)}}
 .auth-switch{text-align:center;margin-top:14px;font-size:.78rem;color:var(--mid)}
 .auth-switch a{color:var(--rose-d);cursor:pointer}
 .auth-switch a:hover{text-decoration:underline}
@@ -223,21 +235,48 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .hero__h em{font-style:italic;color:var(--rose)}
 .hero__sub{font-size:.9rem;opacity:.8;margin-bottom:32px}
 .hero__btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
-.btn{padding:13px 30px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background var(--tr),color var(--tr),border var(--tr)}
+/* Emil: buttons must feel responsive — scale(0.97) on :active */
+.btn{padding:13px 30px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 160ms var(--ease-out),color 160ms var(--ease-out),border 160ms var(--ease-out),transform 160ms var(--ease-out)}
+.btn:active{transform:scale(0.97)}
 .btn--rose{background:var(--rose);color:#fff}
-.btn--rose:hover{background:var(--rose-d)}
+@media(hover:hover)and(pointer:fine){.btn--rose:hover{background:var(--rose-d)}}
 .btn--ghost{border:1px solid rgba(255,255,255,.7);color:#fff}
-.btn--ghost:hover{background:rgba(255,255,255,.15)}
+@media(hover:hover)and(pointer:fine){.btn--ghost:hover{background:rgba(255,255,255,.15)}}
 .hero__stars{font-size:.78rem;opacity:.75;letter-spacing:.04em}
 .hero__stars span{margin-left:4px;font-size:.72rem}
+
+/* ── HERO ENTRANCE STAGGER (Emil: sequential, each under 300ms) ── */
+@keyframes heroFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero__eye{animation:heroFade 500ms var(--ease-out) both}
+.hero__h{animation:heroFade 500ms var(--ease-out) 80ms both}
+.hero__sub{animation:heroFade 500ms var(--ease-out) 160ms both}
+.hero__btns{animation:heroFade 500ms var(--ease-out) 240ms both}
+.hero__stars{animation:heroFade 500ms var(--ease-out) 320ms both}
 
 /* ── PILLS ─────────────────────────────────────────────── */
 .pills-section{padding:28px 0;border-bottom:1px solid var(--border)}
 .pills-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.pill{display:flex;align-items:center;gap:6px;padding:8px 18px;border:1px solid var(--border);border-radius:30px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;color:var(--mid);transition:background var(--tr),color var(--tr),border var(--tr)}
-.pill:hover,.pill.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+/* Emil: stagger pill entrance */
+@keyframes pillIn{from{opacity:0;transform:translateY(6px) scale(0.97)}to{opacity:1;transform:none}}
+.pill{display:flex;align-items:center;gap:6px;padding:8px 18px;border:1px solid var(--border);border-radius:30px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;color:var(--mid);transition:background 180ms var(--ease-out),color 180ms var(--ease-out),border 180ms var(--ease-out),transform 160ms var(--ease-out);animation:pillIn 400ms var(--ease-out) both}
+.pills-row .pill:nth-child(1){animation-delay:0ms}
+.pills-row .pill:nth-child(2){animation-delay:40ms}
+.pills-row .pill:nth-child(3){animation-delay:80ms}
+.pills-row .pill:nth-child(4){animation-delay:120ms}
+.pills-row .pill:nth-child(5){animation-delay:160ms}
+.pills-row .pill:nth-child(6){animation-delay:200ms}
+.pills-row .pill:nth-child(7){animation-delay:240ms}
+.pills-row .pill:nth-child(8){animation-delay:280ms}
+/* Emil: only hover on real pointer devices */
+@media(hover:hover)and(pointer:fine){
+  .pill:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
+  .pill--sale:hover{background:var(--rose-d);border-color:var(--rose-d);color:#fff}
+}
+/* Emil: :active gives instant feedback */
+.pill:active{transform:scale(0.96)}
+.pill.active{background:var(--dark);color:#fff;border-color:var(--dark)}
 .pill--sale{border-color:var(--rose);color:var(--rose-d)}
-.pill--sale:hover{background:var(--rose-d);border-color:var(--rose-d);color:#fff}
+.pill--sale.active{background:var(--rose-d);border-color:var(--rose-d);color:#fff}
 
 /* ── STRIP ─────────────────────────────────────────────── */
 .strip{background:var(--ivory);border-bottom:1px solid var(--border);padding:22px 0}
@@ -263,21 +302,41 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px}
 .no-results{text-align:center;padding:40px;color:var(--mid);font-size:1rem;grid-column:1/-1}
 
-/* Product card */
-.pcard{cursor:pointer;transition:transform var(--tr)}
-.pcard:hover{transform:translateY(-4px)}
+/* Emil: stagger product cards on enter — 50ms between items, stays under 300ms total */
+@keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.pgrid.stagger .pcard{animation:cardIn 350ms var(--ease-out) both}
+.pgrid.stagger .pcard:nth-child(1){animation-delay:0ms}
+.pgrid.stagger .pcard:nth-child(2){animation-delay:50ms}
+.pgrid.stagger .pcard:nth-child(3){animation-delay:100ms}
+.pgrid.stagger .pcard:nth-child(4){animation-delay:150ms}
+.pgrid.stagger .pcard:nth-child(5){animation-delay:200ms}
+.pgrid.stagger .pcard:nth-child(6){animation-delay:240ms}
+.pgrid.stagger .pcard:nth-child(7){animation-delay:270ms}
+.pgrid.stagger .pcard:nth-child(8){animation-delay:290ms}
+/* above 8 items appear immediately — stagger is decorative, not blocking */
+
+/* Product card — Emil polish */
+.pcard{cursor:pointer;transition:transform 240ms var(--ease-out),box-shadow 240ms var(--ease-out)}
+/* Emil: only hover effect on real pointer devices */
+@media(hover:hover)and(pointer:fine){
+  .pcard:hover{transform:translateY(-5px);box-shadow:0 12px 32px var(--shadow)}
+  .pcard:hover .pcard__img img{transform:scale(1.06)}
+  .pcard:hover .pcard__hover{transform:translateY(0)}
+}
+/* Emil: :active gives immediate feedback */
+.pcard:active{transform:scale(0.98)}
 .pcard__img{position:relative;overflow:hidden;border-radius:4px;background:var(--light);aspect-ratio:3/4}
-.pcard__img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
-.pcard:hover .pcard__img img{transform:scale(1.05)}
+.pcard__img img{width:100%;height:100%;object-fit:cover;transition:transform 400ms var(--ease-out)}
 .pcard__badges{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:4px}
 .tag{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;color:#fff}
 .tag--new{background:var(--dark)}
 .tag--sale{background:var(--rose-d)}
-.pcard__hover{position:absolute;bottom:0;left:0;right:0;display:flex;transform:translateY(100%);transition:transform .24s ease}
-.pcard:hover .pcard__hover{transform:translateY(0)}
-.btn-hadd{flex:1;background:var(--dark);color:#fff;padding:11px 0;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;transition:background var(--tr)}
-.btn-hadd:hover{background:var(--rose-d)}
-.btn-hwish{width:44px;background:#fff;font-size:1.1rem;color:var(--mid);border-left:1px solid var(--border);transition:color var(--tr)}
+/* Emil: hover button slides from bottom (translateY 100%) — correct use of % */
+.pcard__hover{position:absolute;bottom:0;left:0;right:0;display:flex;transform:translateY(100%);transition:transform 200ms var(--ease-out)}
+.btn-hadd{flex:1;background:var(--dark);color:#fff;padding:11px 0;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;transition:background 160ms var(--ease-out)}
+.btn-hadd:active{transform:scale(0.98)}
+@media(hover:hover)and(pointer:fine){.btn-hadd:hover{background:var(--rose-d)}}
+.btn-hwish{width:44px;background:#fff;font-size:1.1rem;color:var(--mid);border-left:1px solid var(--border);transition:color 160ms var(--ease-out)}
 .btn-hwish.active,.btn-hwish:hover{color:var(--rose-d)}
 .pcard__info{padding:12px 4px 4px}
 .pcard__cat{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:4px}
@@ -287,13 +346,18 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 
 /* ── CATEGORY CARDS ────────────────────────────────────── */
 .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.cat-card{position:relative;overflow:hidden;border-radius:6px;aspect-ratio:3/4;cursor:pointer;display:flex;align-items:flex-end}
+.cat-card{position:relative;overflow:hidden;border-radius:6px;aspect-ratio:3/4;cursor:pointer;display:flex;align-items:flex-end;transition:transform 240ms var(--ease-out),box-shadow 240ms var(--ease-out)}
+/* Emil: :active on cards gives immediate tactile feel */
+.cat-card:active{transform:scale(0.98)}
+@media(hover:hover)and(pointer:fine){
+  .cat-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+  .cat-card:hover .cat-card__c span{opacity:1}
+}
 .cat-card--tall{aspect-ratio:2/3;grid-row:span 1}
-.cat-card__c{position:relative;z-index:1;padding:20px;color:#fff;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 100%);width:100%}
+.cat-card__c{position:relative;z-index:1;padding:20px;color:#fff;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 60%,transparent 100%);width:100%}
 .cat-card__c h3{font-family:var(--ser);font-size:1.2rem;font-weight:400;margin-bottom:2px}
 .cat-card__c p{font-size:.74rem;opacity:.8;margin-bottom:6px}
-.cat-card__c span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:1px}
-.cat-card:hover .cat-card__c span{opacity:1}
+.cat-card__c span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:1px;transition:opacity 160ms var(--ease-out)}
 
 /* ── REVIEWS ───────────────────────────────────────────── */
 .reviews-score{display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:32px}
@@ -371,8 +435,36 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .related .sec-hd{text-align:left;justify-content:flex-start}
 
 /* ── TOAST ─────────────────────────────────────────────── */
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark);color:#fff;padding:11px 24px;border-radius:30px;font-size:.8rem;letter-spacing:.04em;z-index:9999;transition:transform .3s ease,opacity .3s ease;opacity:0;pointer-events:none;max-width:90vw;text-align:center}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+/* Emil: toast enters/exits from same direction — ease-out for enter, fast exit */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px) scale(0.97);background:var(--dark);color:#fff;padding:11px 24px;border-radius:30px;font-size:.8rem;letter-spacing:.04em;z-index:9999;transition:transform 240ms var(--ease-out),opacity 200ms var(--ease-out);opacity:0;pointer-events:none;max-width:90vw;text-align:center}
+.toast.show{transform:translateX(-50%) translateY(0) scale(1);opacity:1}
+
+/* ── REVIEW CARDS ──────────────────────────────────────── */
+@media(hover:hover)and(pointer:fine){
+  .rev-card{transition:transform 220ms var(--ease-out),box-shadow 220ms var(--ease-out)}
+  .rev-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px var(--shadow)}
+}
+
+/* ── SECTION SCROLL REVEAL ─────────────────────────────── */
+/* JS adds .revealed when section enters viewport */
+@keyframes sectionIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.home-section,.cats-section,.reviews-section,.strip{opacity:0}
+.home-section.revealed,.cats-section.revealed,.reviews-section.revealed,.strip.revealed{
+  animation:sectionIn 500ms var(--ease-out) both
+}
+
+/* ── MOBILE MENU EASING ────────────────────────────────── */
+.mob-menu{position:fixed;top:0;left:-290px;width:270px;height:100%;background:#fff;z-index:1001;overflow-y:auto;transition:left 300ms var(--ease-drawer);padding:0 0 30px}
+
+/* ── prefers-reduced-motion — remove movement, keep opacity ── */
+@media(prefers-reduced-motion:reduce){
+  .hero__eye,.hero__h,.hero__sub,.hero__btns,.hero__stars,
+  .pill,.pgrid.stagger .pcard,
+  .home-section,.cats-section,.reviews-section,.strip{
+    animation:none;opacity:1;transform:none
+  }
+  *{transition-duration:0.01ms!important}
+}
 
 /* ── RESPONSIVE ────────────────────────────────────────── */
 @media(max-width:960px){

@@ -24,8 +24,29 @@ function init() {
   refreshBadges();
   refreshUserUI();
   initDropdowns();
+  initScrollReveal();
   window.addEventListener('scroll', () =>
     document.getElementById('header').classList.toggle('scrolled', scrollY > 50));
+}
+
+// ── SCROLL REVEAL (Emil: sections fade-in as they enter viewport) ─
+function initScrollReveal() {
+  const targets = document.querySelectorAll(
+    '.home-section, .cats-section, .reviews-section, .strip'
+  );
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(el => el.classList.add('revealed'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  targets.forEach(el => io.observe(el));
 }
 
 // Garantia: se por acaso ainda não carregou, espera; senão chama já
@@ -111,26 +132,26 @@ function card(p) {
 // ── HOME ──────────────────────────────────────────────────────
 function renderHomeGrid() {
   const items = products.filter(p => p.new).slice(0, 12);
-  document.getElementById('homeGrid').innerHTML = items.map(card).join('');
+  const el = document.getElementById('homeGrid');
+  el.innerHTML = items.map(card).join('');
+  el.classList.add('stagger'); // Emil: stagger entrance
 }
 
 function renderBestGrid() {
-  // Mais vendidos = vestidos e conjuntos com preço mais alto (proxy de popularidade)
   const items = products
     .filter(p => p.cat.some(c => ['vestidos','conjuntos'].includes(c)))
     .sort((a,b) => b.price - a.price)
     .slice(0, 8);
   const el = document.getElementById('bestGrid');
-  if (el) el.innerHTML = items.map(card).join('');
+  if (el) { el.innerHTML = items.map(card).join(''); el.classList.add('stagger'); }
 }
 
 function renderAcGrid() {
-  // Acessórios destaque: malas + joalharia
   const items = products
     .filter(p => p.cat.some(c => ['malas','brincos','colares','pulseiras','aneis'].includes(c)))
     .slice(0, 8);
   const el = document.getElementById('acGrid');
-  if (el) el.innerHTML = items.map(card).join('');
+  if (el) { el.innerHTML = items.map(card).join(''); el.classList.add('stagger'); }
 }
 
 function showHome() {
