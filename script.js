@@ -117,8 +117,8 @@ function card(p) {
         ${p.sale ? '<span class="tag tag--sale">Saldo</span>' : ''}
       </div>
       <div class="pcard__hover" onclick="event.stopPropagation()">
-        <button class="btn-hadd" onclick="quickAdd(${p.id})">Adicionar ao carrinho</button>
-        <button class="btn-hwish ${inW?'active':''}" onclick="toggleWish(${p.id})">${inW?'♥':'♡'}</button>
+        <button class="btn-hadd" onclick="quickAdd(${p.id}, event)">Adicionar ao carrinho</button>
+        <button class="btn-hwish ${inW?'active':''}" data-wish="${p.id}" onclick="toggleWish(${p.id}, event)">${inW?'♥':'♡'}</button>
       </div>
     </div>
     <div class="pcard__info">
@@ -188,9 +188,18 @@ function applyFilters() {
   const titles = { all:'Todos os Produtos', ...CAT_LABELS };
   document.getElementById('shopTitle').textContent = titles[cat] || 'Produtos';
   document.getElementById('shopCount').textContent = `${list.length} produto${list.length !== 1 ? 's' : ''}`;
-  document.getElementById('shopGrid').innerHTML = list.length
+  const sg = document.getElementById('shopGrid');
+  sg.innerHTML = list.length
     ? list.map(card).join('')
     : '<p class="no-results">Nenhum produto encontrado.</p>';
+  restagger(sg);
+}
+
+// Emil: re-trigger the stagger entrance whenever the grid content changes
+function restagger(el) {
+  el.classList.remove('stagger');
+  void el.offsetWidth;
+  el.classList.add('stagger');
 }
 
 // ── SEARCH ────────────────────────────────────────────────────
@@ -207,7 +216,9 @@ function doSearch(q) {
   show('shopPage'); hide('homePage'); hide('productPage');
   document.getElementById('shopTitle').textContent = `Resultados para "${q}"`;
   document.getElementById('shopCount').textContent = `${r.length} resultado${r.length !== 1 ? 's' : ''}`;
-  document.getElementById('shopGrid').innerHTML = r.length ? r.map(card).join('') : '<p class="no-results">Sem resultados.</p>';
+  const sg = document.getElementById('shopGrid');
+  sg.innerHTML = r.length ? r.map(card).join('') : '<p class="no-results">Sem resultados.</p>';
+  restagger(sg);
   document.querySelector('input[name="cf"][value="all"]').checked = true;
 }
 
@@ -268,9 +279,24 @@ function goBack() {
 }
 
 // ── CART ──────────────────────────────────────────────────────
-function quickAdd(id) {
+function quickAdd(id, ev) {
   const p = products.find(x => x.id === id);
   addItem(id, p.sizes[0]);
+  // Emil: confirm the action with a brief success state on the clicked button
+  if (ev && ev.target) {
+    const btn = ev.target.closest('.btn-hadd');
+    if (btn && !btn.dataset.busy) {
+      btn.dataset.busy = '1';
+      const orig = btn.textContent;
+      btn.textContent = '✓ Adicionado';
+      btn.classList.add('btn-hadd--done');
+      setTimeout(() => {
+        btn.textContent = orig;
+        btn.classList.remove('btn-hadd--done');
+        delete btn.dataset.busy;
+      }, 1200);
+    }
+  }
 }
 
 function addItem(id, size) {
@@ -351,13 +377,14 @@ function closeCart() {
 }
 
 // ── WISHLIST ──────────────────────────────────────────────────
-function toggleWish(id) {
-  if (wishlist.includes(id)) {
-    wishlist = wishlist.filter(x => x !== id);
-    toast('Removido dos favoritos');
-  } else {
+function toggleWish(id, ev) {
+  const added = !wishlist.includes(id);
+  if (added) {
     wishlist.push(id);
     toast('Adicionado aos favoritos ♥');
+  } else {
+    wishlist = wishlist.filter(x => x !== id);
+    toast('Removido dos favoritos');
   }
   localStorage.setItem('ml_wish', JSON.stringify(wishlist));
   refreshBadges();
@@ -366,6 +393,11 @@ function toggleWish(id) {
     b.classList.toggle('active', wishlist.includes(id));
     b.textContent = wishlist.includes(id) ? '♥' : '♡';
   });
+  // Emil: pop the heart only when adding (the moment of delight)
+  if (added && ev && ev.target) {
+    const heart = ev.target.closest('.btn-hwish');
+    if (heart) { heart.classList.remove('heart-pop'); void heart.offsetWidth; heart.classList.add('heart-pop'); }
+  }
   const pdBtn = document.getElementById(`pdWish${id}`);
   if (pdBtn) {
     pdBtn.classList.toggle('active', wishlist.includes(id));
@@ -389,12 +421,30 @@ function openWishlistPanel() {
 }
 
 // ── BADGES ────────────────────────────────────────────────────
+let _lastCartQty = 0, _lastWishQty = 0;
 function refreshBadges() {
   const qty = cart.reduce((s,x) => s+x.qty, 0);
-  document.getElementById('cBadge').textContent = qty;
+  const cb = document.getElementById('cBadge');
+  cb.textContent = qty;
+  // Emil: pulse the badge only when the count actually grows — feedback, not decoration
+  if (qty > _lastCartQty) pulse(cb);
+  _lastCartQty = qty;
+
   const wb = document.getElementById('wBadge');
-  if (wishlist.length) { wb.textContent = wishlist.length; wb.style.display = 'flex'; }
-  else wb.style.display = 'none';
+  if (wishlist.length) {
+    wb.textContent = wishlist.length;
+    wb.style.display = 'flex';
+    if (wishlist.length > _lastWishQty) pulse(wb);
+  } else {
+    wb.style.display = 'none';
+  }
+  _lastWishQty = wishlist.length;
+}
+
+function pulse(el) {
+  el.classList.remove('badge-pulse');
+  void el.offsetWidth; // restart animation
+  el.classList.add('badge-pulse');
 }
 
 // ── AUTH ──────────────────────────────────────────────────────
@@ -634,7 +684,15 @@ function toggleMobile() {
 }
 
 // ── UTILS ─────────────────────────────────────────────────────
-function show(id) { const el = document.getElementById(id); if (el) el.style.display = ''; }
+function show(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = '';
+  // Emil: gentle fade-up on page switch — masks the hard display swap
+  el.classList.remove('page-in');
+  void el.offsetWidth;
+  el.classList.add('page-in');
+}
 function hide(id) { const el = document.getElementById(id); if (el) el.style.display = 'none'; }
 
 function toast(msg) {
