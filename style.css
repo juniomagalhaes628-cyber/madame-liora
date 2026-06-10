@@ -65,7 +65,7 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 /* Icons right */
 .header__icons{display:flex;align-items:center;gap:4px}
 /* Emil: icon buttons — immediate feedback */
-.icon-btn{display:flex;align-items:center;gap:5px;padding:8px 10px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dark);transition:color 160ms var(--ease-out),transform 160ms var(--ease-out);position:relative}
+.icon-btn{display:flex;align-items:center;gap:5px;padding:8px 10px;min-height:44px;min-width:44px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dark);transition:color 160ms var(--ease-out),transform 160ms var(--ease-out);position:relative}
 .icon-btn:active{transform:scale(0.90)}
 @media(hover:hover)and(pointer:fine){.icon-btn:hover{color:var(--rose)}}
 .user-name{font-size:.68rem;max-width:70px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -90,10 +90,10 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .mob-menu.open{left:0}
 .mob-close{display:block;width:100%;text-align:right;padding:16px 18px;font-size:1.3rem;color:var(--mid)}
 .mob-menu details{border-bottom:1px solid var(--border)}
-.mob-menu summary{padding:13px 18px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.mob-menu summary{padding:13px 18px;min-height:44px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
 .mob-menu summary::after{content:'›';font-size:1.1rem;color:var(--mid)}
 .mob-menu details[open] summary::after{content:'›';transform:rotate(90deg);display:inline-block}
-.mob-menu details a{display:block;padding:9px 28px;font-size:.78rem;color:var(--mid);border-bottom:1px solid var(--light)}
+.mob-menu details a{display:flex;align-items:center;min-height:44px;padding:0 28px;font-size:.78rem;color:var(--mid);border-bottom:1px solid var(--light)}
 .mob-menu details a:hover{color:var(--rose)}
 .mob-sale{display:block;padding:13px 18px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rose-d);border-bottom:1px solid var(--border)}
 .mob-menu hr{border:none;border-top:1px solid var(--border);margin:8px 0}
@@ -135,7 +135,7 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .ci__sz{font-size:.72rem;color:var(--mid);margin-bottom:8px}
 .ci__row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .ci__qty{display:flex;align-items:center;border:1px solid var(--border);border-radius:3px;overflow:hidden}
-.ci__qty button{width:28px;height:28px;font-size:1rem;color:var(--dark);transition:background var(--tr)}
+.ci__qty button{width:32px;height:32px;font-size:1rem;color:var(--dark);transition:background var(--tr)}
 .ci__qty button:hover{background:var(--light)}
 .ci__qty span{width:28px;text-align:center;font-size:.82rem}
 .ci__price{font-weight:600;font-size:.9rem}
@@ -298,7 +298,7 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 
 /* Controls */
 .cf-controls{display:flex;align-items:center;gap:16px}
-.cf-arrow{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);backdrop-filter:blur(6px);
+.cf-arrow{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);backdrop-filter:blur(6px);
   border:1px solid rgba(255,255,255,.3);color:#fff;font-size:1.4rem;line-height:1;
   display:flex;align-items:center;justify-content:center;
   transition:background 200ms var(--ease-out),transform 160ms var(--ease-out)}
@@ -372,7 +372,7 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 /* above 8 items appear immediately — stagger is decorative, not blocking */
 
 /* Product card — Emil polish + 3D tilt */
-.pcard{cursor:pointer;transform-style:preserve-3d;transition:transform 240ms var(--ease-out),box-shadow 240ms var(--ease-out);will-change:transform}
+.pcard{cursor:pointer;transform-style:preserve-3d;transition:transform 240ms var(--ease-out),box-shadow 240ms var(--ease-out);will-change:transform;min-width:0}
 /* JS-driven tilt writes --rx/--ry/--tz; when tilting we kill the transition for 1:1 follow */
 .pcard.tilting{transition:box-shadow 240ms var(--ease-out)}
 .pcard.tilting{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateZ(0)}
@@ -568,6 +568,18 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
   .hero__inner{grid-template-columns:1fr;gap:30px;text-align:center}
   .hero__content{text-align:center}
   .hero__content .hero__btns,.hero__content .hero__stars{justify-content:center}
+}
+@media(max-width:768px){
+  /* suppress the stacked carousel on smaller tablets — wastes vertical space */
+  .hero__carousel{display:none}
+  .hero{min-height:65vh;padding:72px 0 36px}
+  .hero__inner{padding:0 20px}
+  /* compact strip on tablets */
+  .strip__inner{gap:20px}
+  /* tighter section padding */
+  .home-section,.cats-section,.reviews-section,.info-section{padding:48px 0}
+  /* mob-sale link spacing */
+  .mob-auth,.mob-sale{min-height:44px;display:flex;align-items:center}
 }
 @media(max-width:640px){
   .header__inner{padding:0 16px}

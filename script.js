@@ -134,6 +134,10 @@ function initHeroCarousel() {
   let cur = 0, timer = null;
 
   function layout() {
+    // viewport-relative spread so the carousel scales with screen size
+    const stageW = stage.offsetWidth || 300;
+    const spread = Math.min(stageW * 0.40, 110);
+    const depth  = Math.min(stageW * 0.65, 200);
     items.forEach((el, i) => {
       // shortest signed distance around the ring
       let off = i - cur;
@@ -141,8 +145,8 @@ function initHeroCarousel() {
       if (off < -N / 2) off += N;
       const abs = Math.abs(off);
       const vis = abs <= 2;                 // only centre + 2 neighbours show
-      const x = off * 100;                  // tighter spread (no bleed into text)
-      const z = -abs * 200;                 // depth
+      const x = off * spread;
+      const z = -abs * depth;
       const ry = off * -34;                 // rotation toward viewer
       const scale = abs === 0 ? 1 : 0.8;
       const op = vis ? 1 - abs * 0.34 : 0;
@@ -183,9 +187,13 @@ function initHeroCarousel() {
   window.addEventListener('pointerup', e => {
     if (!down) return; down = false;
     const dx = e.clientX - sx;
-    if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
+    const swipeThr = Math.max(28, stage.offsetWidth * 0.08);
+    if (Math.abs(dx) > swipeThr) (dx < 0 ? next() : prev());
     start();
   });
+
+  // re-layout on resize so spread/depth recalculate for the new viewport
+  window.addEventListener('resize', layout, { passive: true });
 
   layout();
   start();
