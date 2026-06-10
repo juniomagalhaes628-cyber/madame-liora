@@ -326,7 +326,7 @@
 
   <!-- HOME -->
   <div id="homePage">
-    <section class="hero">
+    <section class="hero" id="hero">
       <div class="hero__bg">
         <img
           src="https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=1600"
@@ -334,15 +334,28 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <div class="hero__content">
-        <p class="hero__eye">✨ Boutique Feminina · Oldrões, Penafiel</p>
-        <h1 class="hero__h">Elegância<br/><em>sem limites</em></h1>
-        <p class="hero__sub">Peças exclusivas de edição limitada · Nova Coleção 2025</p>
-        <div class="hero__btns">
-          <button class="btn btn--rose" onclick="nav('novidades')">Ver Novidades</button>
-          <button class="btn btn--ghost" onclick="nav('vestidos')">Explorar Vestidos</button>
+      <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="hero__eye">✨ Boutique Feminina · Oldrões, Penafiel</p>
+          <h1 class="hero__h">Elegância<br/><em>sem limites</em></h1>
+          <p class="hero__sub">Peças exclusivas de edição limitada · Nova Coleção 2025</p>
+          <div class="hero__btns">
+            <button class="btn btn--rose" onclick="nav('novidades')">Ver Novidades</button>
+            <button class="btn btn--ghost" onclick="nav('vestidos')">Explorar Vestidos</button>
+          </div>
+          <div class="hero__stars">★★★★★ <span>5,0 · 3 avaliações Google</span></div>
         </div>
-        <div class="hero__stars">★★★★★ <span>5,0 · 3 avaliações Google</span></div>
+
+        <!-- 3D COVERFLOW CAROUSEL -->
+        <div class="hero__carousel" id="heroCarousel" aria-label="Destaques">
+          <div class="cf" id="cfStage"></div>
+          <div class="cf-controls">
+            <button class="cf-arrow" id="cfPrev" aria-label="Anterior">‹</button>
+            <div class="cf-dots" id="cfDots"></div>
+            <button class="cf-arrow" id="cfNext" aria-label="Seguinte">›</button>
+          </div>
+        </div>
       </div>
     </section>
 

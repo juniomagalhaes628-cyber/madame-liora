@@ -17,6 +17,11 @@ let curCat   = 'all';
 // Scripts estão no fim do <body> — o DOM já está pronto quando este
 // código corre. Não podemos depender de DOMContentLoaded (já disparou).
 // Chamamos init() diretamente.
+// ── 3D capability flags ───────────────────────────────────────
+const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER   = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const TILT_OK        = FINE_POINTER && !REDUCED_MOTION;
+
 function init() {
   renderHomeGrid();
   renderBestGrid();
@@ -25,8 +30,183 @@ function init() {
   refreshUserUI();
   initDropdowns();
   initScrollReveal();
+  initTilt();
+  initParallax();
+  initHero3DLazy();
+  initHeroCarousel();
   window.addEventListener('scroll', () =>
     document.getElementById('header').classList.toggle('scrolled', scrollY > 50));
+}
+
+// ── 3D TILT (Emil: write transform directly, rAF, fine-pointer only) ─
+function initTilt() {
+  if (!TILT_OK) return;
+  // delegate on each grid + the product detail image
+  document.querySelectorAll('.pgrid').forEach(grid => attachTilt(grid, '.pcard'));
+  // product page is rendered later; observe it via event delegation on main
+  document.getElementById('main').addEventListener('pointermove', e => {
+    const img = e.target.closest('.pd-img');
+    if (img) tiltEl(img, e);
+  });
+  document.getElementById('main').addEventListener('pointerout', e => {
+    const img = e.target.closest('.pd-img');
+    if (img && !img.contains(e.relatedTarget)) resetTilt(img);
+  });
+}
+
+function attachTilt(scope, sel) {
+  scope.addEventListener('pointermove', e => {
+    const card = e.target.closest(sel);
+    if (card) tiltEl(card, e);
+  });
+  scope.addEventListener('pointerout', e => {
+    const card = e.target.closest(sel);
+    if (card && !card.contains(e.relatedTarget)) resetTilt(card);
+  });
+}
+
+let _tiltRaf;
+function tiltEl(el, e) {
+  const r = el.getBoundingClientRect();
+  const px = (e.clientX - r.left) / r.width  - 0.5; // -0.5..0.5
+  const py = (e.clientY - r.top)  / r.height - 0.5;
+  const max = 9; // deg, matches --tilt-max
+  cancelAnimationFrame(_tiltRaf);
+  _tiltRaf = requestAnimationFrame(() => {
+    el.classList.add('tilting');
+    el.style.setProperty('--ry', (px *  max).toFixed(2) + 'deg');
+    el.style.setProperty('--rx', (py * -max).toFixed(2) + 'deg');
+  });
+}
+function resetTilt(el) {
+  el.classList.remove('tilting');
+  el.style.removeProperty('--rx');
+  el.style.removeProperty('--ry');
+}
+
+// ── PARALLAX (Emil: subtle, rAF-throttled, off in reduced-motion) ─
+function initParallax() {
+  if (REDUCED_MOTION) return;
+  const layers = [
+    { el: document.querySelector('.hero__content'), speed: 0.18 },
+  ].filter(l => l.el);
+  if (!layers.length) return;
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      layers.forEach(l => { l.el.style.transform = `translateY(${y * l.speed}px)`; });
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
+// ── HERO 3D COVERFLOW CAROUSEL ────────────────────────────────
+function initHeroCarousel() {
+  const stage = document.getElementById('cfStage');
+  const dotsEl = document.getElementById('cfDots');
+  if (!stage) return;
+
+  // featured = novidades, fall back to priciest dresses
+  let feat = products.filter(p => p.new);
+  if (feat.length < 5) feat = feat.concat(
+    products.filter(p => !p.new && p.cat.includes('vestidos')).slice(0, 6)
+  );
+  feat = feat.slice(0, 7);
+  if (!feat.length) { document.getElementById('heroCarousel')?.remove(); return; }
+
+  // build slides
+  stage.innerHTML = feat.map((p, i) => `
+    <div class="cf-item" data-i="${i}" onclick="cfClick(${i}, ${p.id})">
+      <img src="${p.img}" alt="${p.name}" loading="eager"/>
+      <div class="cf-item__tag">${p.name.split(' - ')[0]}
+        <span class="cf-item__price">${fmt(p.price)}</span>
+      </div>
+    </div>`).join('');
+  dotsEl.innerHTML = feat.map((_, i) =>
+    `<button class="cf-dot" data-i="${i}" aria-label="Slide ${i+1}"></button>`).join('');
+
+  const items = [...stage.querySelectorAll('.cf-item')];
+  const dots  = [...dotsEl.querySelectorAll('.cf-dot')];
+  const N = items.length;
+  let cur = 0, timer = null;
+
+  function layout() {
+    items.forEach((el, i) => {
+      // shortest signed distance around the ring
+      let off = i - cur;
+      if (off >  N / 2) off -= N;
+      if (off < -N / 2) off += N;
+      const abs = Math.abs(off);
+      const x = off * 132;            // horizontal spread
+      const z = -abs * 220;           // depth
+      const ry = off * -32;           // rotation toward viewer
+      const op = abs > 2 ? 0 : 1 - abs * 0.28;
+      const blur = abs === 0 ? 0 : Math.min(abs * 1.5, 3);
+      el.style.transform =
+        `translate3d(${x}px,0,${z}px) rotateY(${ry}deg) scale(${abs===0?1:0.9})`;
+      el.style.opacity = op;
+      el.style.filter = `blur(${blur}px)`;
+      el.style.zIndex = String(100 - abs);
+      el.classList.toggle('is-active', off === 0);
+    });
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === cur));
+  }
+  function go(n) { cur = (n + N) % N; layout(); }
+  function next() { go(cur + 1); }
+  function prev() { go(cur - 1); }
+
+  // expose click handler that centres or opens
+  window.cfClick = (i, id) => { if (i === cur) openProduct(id); else go(i); };
+
+  document.getElementById('cfNext').onclick = () => { next(); restart(); };
+  document.getElementById('cfPrev').onclick = () => { prev(); restart(); };
+  dots.forEach(d => d.onclick = () => { go(+d.dataset.i); restart(); });
+
+  // autoplay (paused on hover / hidden tab / reduced-motion stays still but advances)
+  function start() { if (!REDUCED_MOTION) timer = setInterval(next, 4000); }
+  function stop()  { clearInterval(timer); timer = null; }
+  function restart() { stop(); start(); }
+  const wrap = document.getElementById('heroCarousel');
+  wrap.addEventListener('pointerenter', stop);
+  wrap.addEventListener('pointerleave', start);
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+
+  // drag / swipe
+  let down = false, sx = 0;
+  stage.addEventListener('pointerdown', e => { down = true; sx = e.clientX; stop(); });
+  window.addEventListener('pointerup', e => {
+    if (!down) return; down = false;
+    const dx = e.clientX - sx;
+    if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
+    start();
+  });
+
+  layout();
+  start();
+}
+
+// ── HERO WebGL (lazy + capability check, silent fallback) ─────────
+function initHero3DLazy() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  // capability check: skip on reduced-motion, small screens, or weak CPUs
+  const smallScreen = window.matchMedia('(max-width: 640px)').matches;
+  const weakCPU = (navigator.hardwareConcurrency || 4) < 4;
+  if (REDUCED_MOTION || smallScreen || weakCPU) return;
+
+  const hero = document.getElementById('hero');
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    if (!entries.some(e => e.isIntersecting)) return;
+    io.disconnect();
+    import('./hero3d.js')
+      .then(m => m.initHero3D(canvas))
+      .catch(() => { /* leave the <img> fallback */ });
+  }, { threshold: 0.1 });
+  io.observe(hero);
 }
 
 // ── SCROLL REVEAL (Emil: sections fade-in as they enter viewport) ─

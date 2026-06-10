@@ -11,6 +11,9 @@
   --ease-out:cubic-bezier(0.23,1,0.32,1);
   --ease-in-out:cubic-bezier(0.77,0,0.175,1);
   --ease-drawer:cubic-bezier(0.32,0.72,0,1);
+  /* 3D tokens */
+  --persp:1200px;
+  --tilt-max:9deg;
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--san);background:#fff;color:var(--dark);font-size:14px;line-height:1.6;overflow-x:hidden}
@@ -237,8 +240,15 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .hero{position:relative;height:82vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .hero__bg{position:absolute;inset:0;z-index:0;background:linear-gradient(145deg,#3d1f1a 0%,#7a3d30 50%,#1a1212 100%)}
 .hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+/* WebGL canvas overlays the fallback image; fades in when ready */
+.hero__canvas{position:absolute;inset:0;z-index:0;width:100%;height:100%;opacity:0;transition:opacity 700ms var(--ease-out)}
+.hero__canvas.ready{opacity:1}
+.hero.webgl-on .hero__bg img{opacity:0;transition:opacity 700ms var(--ease-out)}
 .hero__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(26,18,18,.72) 0%,rgba(26,18,18,.45) 60%,rgba(26,18,18,.55) 100%)}
-.hero__content{position:relative;z-index:1;text-align:center;color:#fff;padding:0 20px}
+/* Hero two-column layout: content + 3D carousel */
+.hero__inner{position:relative;z-index:1;width:100%;max-width:1280px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px}
+.hero__content{color:#fff;text-align:left;padding:0}
+.hero__content .hero__btns,.hero__content .hero__stars{justify-content:flex-start}
 .hero__eye{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;opacity:.8;margin-bottom:16px}
 .hero__h{font-family:var(--ser);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:400;line-height:1.08;margin-bottom:18px}
 .hero__h em{font-style:italic;color:var(--rose)}
@@ -261,6 +271,36 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .hero__sub{animation:heroFade 500ms var(--ease-out) 160ms both}
 .hero__btns{animation:heroFade 500ms var(--ease-out) 240ms both}
 .hero__stars{animation:heroFade 500ms var(--ease-out) 320ms both}
+
+/* ── HERO 3D COVERFLOW CAROUSEL ────────────────────────── */
+.hero__carousel{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:18px;animation:heroFade 600ms var(--ease-out) 240ms both}
+.cf{position:relative;width:100%;height:420px;perspective:1400px;transform-style:preserve-3d}
+.cf-item{position:absolute;top:50%;left:50%;width:220px;height:300px;margin:-150px 0 0 -110px;border-radius:10px;overflow:hidden;cursor:pointer;
+  background:#1a1212;box-shadow:0 20px 50px rgba(0,0,0,.5);
+  transform-style:preserve-3d;
+  transition:transform 600ms var(--ease-out),opacity 600ms var(--ease-out),filter 600ms var(--ease-out);
+  will-change:transform,opacity}
+.cf-item img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.cf-item__tag{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 12px;color:#fff;
+  background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
+  font-family:var(--ser);font-size:1.05rem;line-height:1.2;
+  opacity:0;transform:translateY(8px);transition:opacity 400ms var(--ease-out),transform 400ms var(--ease-out)}
+.cf-item__price{display:block;font-family:var(--san);font-size:.8rem;color:var(--rose);margin-top:3px;letter-spacing:.04em}
+/* only the centred item reveals its label fully */
+.cf-item.is-active .cf-item__tag{opacity:1;transform:none}
+.cf-item.is-active{box-shadow:0 30px 70px rgba(0,0,0,.6)}
+
+/* Controls */
+.cf-controls{display:flex;align-items:center;gap:16px}
+.cf-arrow{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.12);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.3);color:#fff;font-size:1.4rem;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 200ms var(--ease-out),transform 160ms var(--ease-out)}
+.cf-arrow:active{transform:scale(.92)}
+@media(hover:hover)and(pointer:fine){.cf-arrow:hover{background:rgba(255,255,255,.28)}}
+.cf-dots{display:flex;gap:7px}
+.cf-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);transition:all 260ms var(--ease-out);cursor:pointer}
+.cf-dot.is-active{background:var(--rose);width:22px;border-radius:4px}
 
 /* ── PILLS ─────────────────────────────────────────────── */
 .pills-section{padding:28px 0;border-bottom:1px solid var(--border)}
@@ -308,7 +348,8 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .btn-link:hover{color:var(--dark);border-color:var(--dark)}
 
 /* ── PRODUCT GRID ──────────────────────────────────────── */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px}
+/* 3D: grid is the perspective context for card tilt */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;perspective:var(--persp)}
 .no-results{text-align:center;padding:40px;color:var(--mid);font-size:1rem;grid-column:1/-1}
 
 /* Emil: stagger product cards on enter — 50ms between items, stays under 300ms total */
@@ -324,18 +365,24 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .pgrid.stagger .pcard:nth-child(8){animation-delay:290ms}
 /* above 8 items appear immediately — stagger is decorative, not blocking */
 
-/* Product card — Emil polish */
-.pcard{cursor:pointer;transition:transform 240ms var(--ease-out),box-shadow 240ms var(--ease-out)}
+/* Product card — Emil polish + 3D tilt */
+.pcard{cursor:pointer;transform-style:preserve-3d;transition:transform 240ms var(--ease-out),box-shadow 240ms var(--ease-out);will-change:transform}
+/* JS-driven tilt writes --rx/--ry/--tz; when tilting we kill the transition for 1:1 follow */
+.pcard.tilting{transition:box-shadow 240ms var(--ease-out)}
+.pcard.tilting{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateZ(0)}
 /* Emil: only hover effect on real pointer devices */
 @media(hover:hover)and(pointer:fine){
-  .pcard:hover{transform:translateY(-5px);box-shadow:0 12px 32px var(--shadow)}
+  .pcard:hover{box-shadow:0 18px 40px rgba(30,15,10,.22)}
   .pcard:hover .pcard__img img{transform:scale(1.06)}
   .pcard:hover .pcard__hover{transform:translateY(0)}
+  /* parallax interno: conteúdo sobressai em Z */
+  .pcard:hover .pcard__info{transform:translateZ(34px)}
 }
 /* Emil: :active gives immediate feedback */
 .pcard:active{transform:scale(0.98)}
-.pcard__img{position:relative;overflow:hidden;border-radius:4px;background:var(--light);aspect-ratio:3/4}
+.pcard__img{position:relative;overflow:hidden;border-radius:4px;background:var(--light);aspect-ratio:3/4;transform:translateZ(0)}
 .pcard__img img{width:100%;height:100%;object-fit:cover;transition:transform 400ms var(--ease-out)}
+.pcard__info{transition:transform 240ms var(--ease-out)}
 .pcard__badges{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:4px}
 .tag{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;color:#fff}
 .tag--new{background:var(--dark)}
@@ -359,18 +406,21 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 .pcard__price s{font-weight:400;color:var(--mid);margin-left:6px;font-size:.8rem}
 
 /* ── CATEGORY CARDS ────────────────────────────────────── */
-.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.cat-card{position:relative;overflow:hidden;border-radius:6px;aspect-ratio:3/4;cursor:pointer;display:flex;align-items:flex-end;transition:transform 240ms var(--ease-out),box-shadow 240ms var(--ease-out)}
+/* 3D: grid provides the perspective context */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;perspective:var(--persp)}
+.cat-card{position:relative;overflow:hidden;border-radius:6px;aspect-ratio:3/4;cursor:pointer;display:flex;align-items:flex-end;transform-style:preserve-3d;transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease-out)}
 /* Emil: :active on cards gives immediate tactile feel */
 .cat-card:active{transform:scale(0.98)}
 @media(hover:hover)and(pointer:fine){
-  .cat-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+  /* leve rotação 3D + elevação — profundidade real */
+  .cat-card:hover{transform:translateY(-6px) rotateX(5deg) rotateY(-4deg);box-shadow:0 26px 50px rgba(0,0,0,.4)}
   .cat-card:hover .cat-card__c span{opacity:1}
+  .cat-card:hover .cat-card__c{transform:translateZ(40px)}
+  .cat-card:hover .cat-card__bg{transform:scale(1.1) translateZ(-10px)}
 }
 .cat-card__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform 500ms var(--ease-out)}
-@media(hover:hover)and(pointer:fine){.cat-card:hover .cat-card__bg{transform:scale(1.06)}}
 .cat-card--tall{aspect-ratio:2/3;grid-row:span 1}
-.cat-card__c{position:relative;z-index:1;padding:20px;color:#fff;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 60%,transparent 100%);width:100%}
+.cat-card__c{position:relative;z-index:1;padding:20px;color:#fff;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 60%,transparent 100%);width:100%;transition:transform 300ms var(--ease-out)}
 .cat-card__c h3{font-family:var(--ser);font-size:1.2rem;font-weight:400;margin-bottom:2px}
 .cat-card__c p{font-size:.74rem;opacity:.8;margin-bottom:6px}
 .cat-card__c span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;opacity:.75;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:1px;transition:opacity 160ms var(--ease-out)}
@@ -428,8 +478,11 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 #productPage .container{padding-bottom:60px}
 .pd-back{padding:20px 0;font-size:.78rem;letter-spacing:.08em;color:var(--mid);cursor:pointer;transition:color var(--tr)}
 .pd-back:hover{color:var(--dark)}
-.pd-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-.pd-img{border-radius:4px;overflow:hidden}
+.pd-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;perspective:var(--persp)}
+/* 3D: imagem do produto inclina ao mover o rato (sensação de "pegar" na peça) */
+.pd-img{border-radius:6px;overflow:hidden;transform-style:preserve-3d;transition:transform 240ms var(--ease-out),box-shadow 240ms var(--ease-out);will-change:transform}
+.pd-img.tilting{transition:box-shadow 240ms var(--ease-out);transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+@media(hover:hover)and(pointer:fine){.pd-img:hover{box-shadow:0 24px 50px rgba(30,15,10,.28)}}
 .pd-img img{width:100%;aspect-ratio:3/4;object-fit:cover}
 .pd-cat{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mid);margin-bottom:8px}
 .pd-name{font-family:var(--ser);font-size:2rem;font-weight:400;line-height:1.2;margin-bottom:14px}
@@ -483,6 +536,11 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
   .home-section,.cats-section,.reviews-section,.strip{
     animation:none;opacity:1;transform:none
   }
+  /* kill all 3D tilt/parallax movement, keep layout */
+  .pcard,.pcard.tilting,.cat-card,.cat-card:hover,.pd-img,.pd-img.tilting,
+  .pcard:hover .pcard__info,.cat-card:hover .cat-card__c,.cat-card:hover .cat-card__bg{
+    transform:none!important
+  }
   /* keep badge/heart feedback subtle but allow opacity; kill movement */
   .badge.badge-pulse,.btn-hwish.heart-pop{animation:none}
   *{transition-duration:0.01ms!important;animation-duration:0.01ms!important}
@@ -499,10 +557,15 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
   .rev-grid{grid-template-columns:1fr 1fr}
   .cat-grid{grid-template-columns:1fr 1fr}
   .info-grid{grid-template-columns:1fr}
+  /* hero stacks: text on top, carousel below */
+  .hero{height:auto;min-height:88vh;padding:90px 0 50px}
+  .hero__inner{grid-template-columns:1fr;gap:30px;text-align:center}
+  .hero__content{text-align:center}
+  .hero__content .hero__btns,.hero__content .hero__stars{justify-content:center}
 }
 @media(max-width:640px){
   .header__inner{padding:0 16px}
-  .hero{height:65vh}
+  .hero__inner{padding:0 16px}
   .home-section,.cats-section,.reviews-section,.info-section{padding:40px 0}
   .container{padding:0 16px}
   .footer__grid{grid-template-columns:1fr}
@@ -512,4 +575,7 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
   .cart-side{width:100%;right:-100%}
   .cart-side.open{right:0}
   .pgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  /* compact coverflow on phones */
+  .cf{height:360px}
+  .cf-item{width:180px;height:250px;margin:-125px 0 0 -90px}
 }
