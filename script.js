@@ -140,16 +140,19 @@ function initHeroCarousel() {
       if (off >  N / 2) off -= N;
       if (off < -N / 2) off += N;
       const abs = Math.abs(off);
-      const x = off * 132;            // horizontal spread
-      const z = -abs * 220;           // depth
-      const ry = off * -32;           // rotation toward viewer
-      const op = abs > 2 ? 0 : 1 - abs * 0.28;
-      const blur = abs === 0 ? 0 : Math.min(abs * 1.5, 3);
+      const vis = abs <= 2;                 // only centre + 2 neighbours show
+      const x = off * 100;                  // tighter spread (no bleed into text)
+      const z = -abs * 200;                 // depth
+      const ry = off * -34;                 // rotation toward viewer
+      const scale = abs === 0 ? 1 : 0.8;
+      const op = vis ? 1 - abs * 0.34 : 0;
+      const blur = abs === 0 ? 0 : Math.min(abs * 1.6, 3.5);
       el.style.transform =
-        `translate3d(${x}px,0,${z}px) rotateY(${ry}deg) scale(${abs===0?1:0.9})`;
+        `translate3d(${x}px,0,${z}px) rotateY(${ry}deg) scale(${scale})`;
       el.style.opacity = op;
       el.style.filter = `blur(${blur}px)`;
       el.style.zIndex = String(100 - abs);
+      el.style.pointerEvents = vis ? 'auto' : 'none';
       el.classList.toggle('is-active', off === 0);
     });
     dots.forEach((d, i) => d.classList.toggle('is-active', i === cur));

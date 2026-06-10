@@ -238,13 +238,19 @@ input,textarea,select{font-family:inherit;font-size:.875rem}
 
 /* ── HERO ──────────────────────────────────────────────── */
 .hero{position:relative;height:82vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+/* left scrim above canvas/img, below content — keeps headline readable in all modes */
+.hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(95deg,rgba(20,14,14,.55) 0%,rgba(20,14,14,.18) 36%,transparent 56%)}
 .hero__bg{position:absolute;inset:0;z-index:0;background:linear-gradient(145deg,#3d1f1a 0%,#7a3d30 50%,#1a1212 100%)}
 .hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 /* WebGL canvas overlays the fallback image; fades in when ready */
 .hero__canvas{position:absolute;inset:0;z-index:0;width:100%;height:100%;opacity:0;transition:opacity 700ms var(--ease-out)}
 .hero__canvas.ready{opacity:1}
 .hero.webgl-on .hero__bg img{opacity:0;transition:opacity 700ms var(--ease-out)}
-.hero__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(26,18,18,.72) 0%,rgba(26,18,18,.45) 60%,rgba(26,18,18,.55) 100%)}
+/* elegant left-heavy scrim: guarantees text contrast, keeps image visible on the right */
+.hero__bg::after{content:'';position:absolute;inset:0;background:
+  linear-gradient(100deg,rgba(20,14,14,.88) 0%,rgba(20,14,14,.62) 34%,rgba(20,14,14,.22) 58%,rgba(20,14,14,.42) 100%),
+  radial-gradient(120% 90% at 18% 50%,transparent 40%,rgba(20,14,14,.35) 100%)}
 /* Hero two-column layout: content + 3D carousel */
 .hero__inner{position:relative;z-index:1;width:100%;max-width:1280px;margin:0 auto;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px}
 .hero__content{color:#fff;text-align:left;padding:0}

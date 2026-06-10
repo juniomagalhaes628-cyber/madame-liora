@@ -7,7 +7,7 @@
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
 const HERO_IMG =
-  'https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=1600';
+  'https://images.pexels.com/photos/1689731/pexels-photo-1689731.jpeg?auto=compress&cs=tinysrgb&w=1600';
 
 export function initHero3D(canvas) {
   const hero = canvas.closest('.hero');
@@ -128,8 +128,8 @@ export function initHero3D(canvas) {
     const vh = 2 * Math.tan((camera.fov * Math.PI / 180) / 2) * camera.position.z;
     const vw = vh * camera.aspect;
     plane.scale.set(vw / 36, vh / 22, 1);
-    // cover mapping based on image (≈1600x1067) vs viewport aspect
-    const imgAspect = 1600 / 1067;
+    // cover mapping based on image (portrait ≈2:3) vs viewport aspect
+    const imgAspect = 2 / 3;
     const viewAspect = w / h;
     if (viewAspect > imgAspect) uniforms.uCover.value.set(1, imgAspect / viewAspect);
     else uniforms.uCover.value.set(viewAspect / imgAspect, 1);
